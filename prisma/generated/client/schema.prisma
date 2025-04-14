@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String     @id @default(cuid())
+  name            String
+  email           String     @unique
+  password        String
+  role            Role       @default(USER)
+  image           String?
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  sentDeliveries  Delivery[] @relation("Sender")
+  agentDeliveries Delivery[] @relation("Agent")
+  messages        Message[]  @relation("MessageSender")
+  locations       Location[] @relation("AgentLocation")
+}
+
+model Delivery {
+  id                 String         @id @default(cuid())
+  trackingId         String?        @unique @default(cuid())
+  senderId           String
+  agentId            String?
+  status             DeliveryStatus @default(PENDING)
+  origin             String
+  destination        String
+  pickupAddress      String?
+  deliveryAddress    String?
+  pickupLat          Float?
+  pickupLng          Float?
+  deliveryLat        Float?
+  deliveryLng        Float?
+  packageInfo        String?
+  packageDescription String?
+  weight             Float?
+  dimensions         String?
+  notes              String?
+  estimatedDelivery  DateTime?
+  imageUrl           String?
+  description        String?
+  qrCode             String?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  sender             User           @relation("Sender", fields: [senderId], references: [id])
+  agent              User?          @relation("Agent", fields: [agentId], references: [id])
+  messages           Message[]
+  locations          Location[]
+  statusUpdates      StatusUpdate[]
+}
+
+model StatusUpdate {
+  id         String         @id @default(cuid())
+  status     DeliveryStatus
+  timestamp  DateTime       @default(now())
+  notes      String?
+  deliveryId String
+  delivery   Delivery       @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id         String   @id @default(cuid())
+  content    String
+  senderId   String
+  deliveryId String
+  createdAt  DateTime @default(now())
+  sender     User     @relation("MessageSender", fields: [senderId], references: [id])
+  delivery   Delivery @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
+}
+
+model Location {
+  id         String   @id @default(cuid())
+  latitude   Float
+  longitude  Float
+  agentId    String
+  deliveryId String
+  timestamp  DateTime @default(now())
+  agent      User     @relation("AgentLocation", fields: [agentId], references: [id])
+  delivery   Delivery @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  AGENT
+  ADMIN
+}
+
+enum DeliveryStatus {
+  PENDING
+  ACCEPTED
+  IN_TRANSIT
+  DELIVERED
+  CANCELLED
+  RETURNED
+}
