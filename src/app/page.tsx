@@ -1,61 +1,133 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, Package, Truck, CheckCircle, MapPin, Clock, Shield } from "lucide-react";
+import { motion } from "framer-motion";
+import { useRef } from "react";
+
+// Animation variants
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const staggerContainer = {
+  animate: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
 
 export default function Home() {
+  const featuresRef = useRef(null);
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Hero Header */}
-      <header className="bg-white shadow-sm">
+      <header className="bg-gradient-to-r from-indigo-50 to-blue-50 shadow-sm sticky top-0 z-50">
         <div className="container mx-auto px-4 py-6 flex justify-between items-center">
-          <div className="flex items-center">
-            <Package className="h-8 w-8 text-primary mr-2" />
-            <span className="text-2xl font-bold text-primary">Smart Delivery</span>
-          </div>
+          <motion.div 
+            className="flex items-center"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Package className="h-8 w-8 text-indigo-600 mr-2" />
+            <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+              Smart Delivery
+            </span>
+          </motion.div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#features" className="text-gray-600 hover:text-primary">Features</Link>
-            <Link href="#how-it-works" className="text-gray-600 hover:text-primary">How It Works</Link>
-            <Link href="#contact" className="text-gray-600 hover:text-primary">Contact</Link>
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <Link href="#features" className="text-gray-600 hover:text-indigo-600 transition-colors duration-300">Features</Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Link href="#how-it-works" className="text-gray-600 hover:text-indigo-600 transition-colors duration-300">How It Works</Link>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <Link href="#contact" className="text-gray-600 hover:text-indigo-600 transition-colors duration-300">Contact</Link>
+            </motion.div>
           </nav>
-          <div className="flex items-center space-x-4">
+          <motion.div 
+            className="flex items-center space-x-4"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <Link href="/login">
-              <Button variant="outline">Log In</Button>
+              <Button variant="outline" className="hover:scale-105 transition-transform">Log In</Button>
             </Link>
             <Link href="/register">
-              <Button>Sign Up</Button>
+              <Button className="bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 hover:scale-105 transition-all duration-300">Sign Up</Button>
             </Link>
-          </div>
+          </motion.div>
         </div>
       </header>
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-r from-primary/10 to-primary/5 py-20">
+        <section className="bg-gradient-to-r from-indigo-100 via-blue-50 to-indigo-50 py-20">
           <div className="container mx-auto px-4 flex flex-col-reverse md:flex-row items-center">
-            <div className="md:w-1/2 pt-10 md:pt-0 md:pr-10">
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
-                Real-time Delivery Tracking Platform
+            <motion.div 
+              className="md:w-1/2 pt-10 md:pt-0 md:pr-10"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                <span className="bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+                  Real-time Delivery
+                </span>{" "}
+                Tracking Platform
               </h1>
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-700">
                 Track your deliveries in real-time, communicate with drivers, and receive instant updates with our modern delivery management system.
               </p>
-              <div className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+              <motion.div 
+                className="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 <Link href="/register">
-                  <Button size="lg" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 hover:scale-105 transition-all duration-300 shadow-lg shadow-indigo-200">
                     Get Started <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
                 <Link href="#how-it-works">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-indigo-300 text-indigo-700 hover:bg-indigo-50 hover:scale-105 transition-all duration-300">
                     Learn More
                   </Button>
                 </Link>
-              </div>
-            </div>
-            <div className="md:w-1/2 flex justify-center">
+              </motion.div>
+            </motion.div>
+            <motion.div 
+              className="md:w-1/2 flex justify-center"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
               <div className="relative w-full max-w-md h-96">
-                <div className="absolute top-0 right-0 w-4/5 h-full bg-white rounded-lg shadow-xl overflow-hidden">
+                <motion.div 
+                  className="absolute top-0 right-0 w-4/5 h-full bg-white rounded-lg shadow-2xl overflow-hidden"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <Image
                     src="/images/delivery-map.png"
                     alt="Delivery Map"
@@ -63,216 +135,361 @@ export default function Home() {
                     objectFit="cover"
                     priority
                   />
-                </div>
-                <div className="absolute bottom-10 left-0 w-3/5 bg-white rounded-lg shadow-lg p-4 z-10">
+                </motion.div>
+                <motion.div 
+                  className="absolute bottom-10 left-0 w-3/5 bg-white rounded-lg shadow-xl p-4 z-10"
+                  initial={{ x: -30, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                  whileHover={{ scale: 1.05 }}
+                >
                   <div className="flex items-center">
-                    <div className="rounded-full bg-primary/10 p-3 mr-4">
-                      <Truck className="h-6 w-6 text-primary" />
+                    <div className="rounded-full bg-indigo-100 p-3 mr-4">
+                      <Truck className="h-6 w-6 text-indigo-600" />
                     </div>
                     <div>
                       <h3 className="font-medium">Package #12345</h3>
                       <p className="text-sm text-green-600">Out for delivery</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Features Section */}
-        <section id="features" className="py-20 bg-white">
+        <section id="features" className="py-20 bg-white" ref={featuresRef}>
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold">Powerful Delivery Features</h2>
-              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                Our platform provides everything you need to manage and track deliveries efficiently
+            <motion.div 
+              className="text-center mb-16"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <h2 className="text-3xl font-bold text-gray-900">
+                <span className="bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">Powerful Delivery Features</span>
+              </h2>
+              <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                Everything you need to manage and track your deliveries with ease
               </p>
-            </div>
+            </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <div className="bg-white rounded-lg p-6 shadow-md border border-gray-100">
-                <div className="rounded-full bg-blue-100 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <MapPin className="h-6 w-6 text-blue-600" />
+              <motion.div 
+                className="bg-gradient-to-br from-white to-indigo-50 rounded-xl p-8 shadow-lg border border-indigo-100 transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                transition={{ delay: 0.1 }}
+              >
+                <div className="bg-indigo-100 rounded-full w-14 h-14 flex items-center justify-center mb-6">
+                  <MapPin className="h-7 w-7 text-indigo-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Real-time Tracking</h3>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Real-time Tracking</h3>
                 <p className="text-gray-600">
-                  Track your deliveries in real-time with precise location updates on an interactive map
+                  Track your deliveries in real-time with precise location updates and estimated arrival times.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white rounded-lg p-6 shadow-md border border-gray-100">
-                <div className="rounded-full bg-green-100 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <CheckCircle className="h-6 w-6 text-green-600" />
+              <motion.div 
+                className="bg-gradient-to-br from-white to-blue-50 rounded-xl p-8 shadow-lg border border-blue-100 transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                transition={{ delay: 0.2 }}
+              >
+                <div className="bg-blue-100 rounded-full w-14 h-14 flex items-center justify-center mb-6">
+                  <CheckCircle className="h-7 w-7 text-blue-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">QR Verification</h3>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Secure Verification</h3>
                 <p className="text-gray-600">
-                  Secure delivery verification with QR code scanning for proof of delivery
+                  QR code verification ensures secure delivery confirmation with real-time status updates.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white rounded-lg p-6 shadow-md border border-gray-100">
-                <div className="rounded-full bg-purple-100 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <Clock className="h-6 w-6 text-purple-600" />
+              <motion.div 
+                className="bg-gradient-to-br from-white to-purple-50 rounded-xl p-8 shadow-lg border border-purple-100 transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                transition={{ delay: 0.3 }}
+              >
+                <div className="bg-purple-100 rounded-full w-14 h-14 flex items-center justify-center mb-6">
+                  <Clock className="h-7 w-7 text-purple-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Status Updates</h3>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Instant Updates</h3>
                 <p className="text-gray-600">
-                  Receive instant notifications and status updates throughout the delivery process
+                  Receive instant notifications and status updates at every stage of the delivery process.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white rounded-lg p-6 shadow-md border border-gray-100">
-                <div className="rounded-full bg-yellow-100 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <Truck className="h-6 w-6 text-yellow-600" />
+              <motion.div 
+                className="bg-gradient-to-br from-white to-emerald-50 rounded-xl p-8 shadow-lg border border-emerald-100 transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                transition={{ delay: 0.4 }}
+              >
+                <div className="bg-emerald-100 rounded-full w-14 h-14 flex items-center justify-center mb-6">
+                  <Shield className="h-7 w-7 text-emerald-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Agent Dashboard</h3>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Secure Payments</h3>
                 <p className="text-gray-600">
-                  Dedicated dashboard for delivery agents to manage and update their assignments
+                  Integrated payment system with secure checkout options and transaction tracking.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white rounded-lg p-6 shadow-md border border-gray-100">
-                <div className="rounded-full bg-indigo-100 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <Shield className="h-6 w-6 text-indigo-600" />
+              <motion.div 
+                className="bg-gradient-to-br from-white to-amber-50 rounded-xl p-8 shadow-lg border border-amber-100 transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                transition={{ delay: 0.5 }}
+              >
+                <div className="bg-amber-100 rounded-full w-14 h-14 flex items-center justify-center mb-6">
+                  <Truck className="h-7 w-7 text-amber-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Role-Based Access</h3>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Agent Dashboard</h3>
                 <p className="text-gray-600">
-                  Secure role-based access control for customers, agents, and administrators
+                  Powerful dashboard for delivery agents to manage routes, track deliveries, and communicate.
                 </p>
-              </div>
+              </motion.div>
 
-              <div className="bg-white rounded-lg p-6 shadow-md border border-gray-100">
-                <div className="rounded-full bg-red-100 p-3 w-12 h-12 flex items-center justify-center mb-4">
-                  <Package className="h-6 w-6 text-red-600" />
+              <motion.div 
+                className="bg-gradient-to-br from-white to-rose-50 rounded-xl p-8 shadow-lg border border-rose-100 transform transition duration-500 hover:scale-105 hover:shadow-xl"
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeInUp}
+                transition={{ delay: 0.6 }}
+              >
+                <div className="bg-rose-100 rounded-full w-14 h-14 flex items-center justify-center mb-6">
+                  <Package className="h-7 w-7 text-rose-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-2">Package Info</h3>
+                <h3 className="text-xl font-semibold mb-3 text-gray-900">Package Management</h3>
                 <p className="text-gray-600">
-                  Detailed package information and delivery instructions for smooth fulfillment
+                  Comprehensive package details, dimensions, weight tracking, and delivery instructions.
                 </p>
-              </div>
+              </motion.div>
             </div>
           </div>
         </section>
 
-        {/* How It Works */}
-        <section id="how-it-works" className="py-20 bg-gray-50">
+        {/* How It Works Section */}
+        <section id="how-it-works" className="py-20 bg-gradient-to-b from-indigo-50 to-white">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl font-bold">How It Works</h2>
-              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                Our delivery tracking platform is easy to use for both customers and delivery agents
+            <motion.div 
+              className="text-center mb-16"
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true }}
+              variants={fadeInUp}
+            >
+              <h2 className="text-3xl font-bold text-gray-900">
+                <span className="bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">How It Works</span>
+              </h2>
+              <p className="mt-4 text-xl text-gray-600 max-w-2xl mx-auto">
+                Simple, efficient delivery tracking in 4 easy steps
               </p>
-            </div>
+            </motion.div>
 
-            <div className="flex flex-col md:flex-row gap-8">
-              <div className="flex-1 relative">
-                <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold z-10">1</div>
-                <div className="border border-gray-200 rounded-lg p-6 pl-8 bg-white shadow-sm ml-5">
-                  <h3 className="text-xl font-semibold mb-2">Create a Delivery Request</h3>
+            <motion.div
+              className="space-y-12 md:space-y-0 md:grid md:grid-cols-4 md:gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              <motion.div variants={fadeInUp} className="relative">
+                <motion.div 
+                  className="absolute left-0 top-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 text-white flex items-center justify-center font-bold z-10"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  1
+                </motion.div>
+                <motion.div 
+                  className="border border-indigo-200 rounded-lg p-6 pl-8 bg-white shadow-lg ml-5 hover:shadow-xl transition-shadow duration-300"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Create Request</h3>
                   <p className="text-gray-600">
-                    Specify pickup and dropoff locations, package details, and any special instructions.
+                    Submit your delivery details including pickup and destination locations.
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
-              <div className="flex-1 relative">
-                <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold z-10">2</div>
-                <div className="border border-gray-200 rounded-lg p-6 pl-8 bg-white shadow-sm ml-5">
-                  <h3 className="text-xl font-semibold mb-2">Agent Assignment</h3>
+              <motion.div variants={fadeInUp} className="relative">
+                <motion.div 
+                  className="absolute left-0 top-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 text-white flex items-center justify-center font-bold z-10"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  2
+                </motion.div>
+                <motion.div 
+                  className="border border-indigo-200 rounded-lg p-6 pl-8 bg-white shadow-lg ml-5 hover:shadow-xl transition-shadow duration-300"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Agent Assignment</h3>
                   <p className="text-gray-600">
-                    Delivery agents accept and manage deliveries through their dedicated dashboard.
+                    An agent is assigned to your delivery and will pick up your package.
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
-              <div className="flex-1 relative">
-                <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold z-10">3</div>
-                <div className="border border-gray-200 rounded-lg p-6 pl-8 bg-white shadow-sm ml-5">
-                  <h3 className="text-xl font-semibold mb-2">Real-time Tracking</h3>
+              <motion.div variants={fadeInUp} className="relative">
+                <motion.div 
+                  className="absolute left-0 top-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 text-white flex items-center justify-center font-bold z-10"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  3
+                </motion.div>
+                <motion.div 
+                  className="border border-indigo-200 rounded-lg p-6 pl-8 bg-white shadow-lg ml-5 hover:shadow-xl transition-shadow duration-300"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Track Progress</h3>
                   <p className="text-gray-600">
                     Track the delivery in real-time and communicate with the agent via in-app chat.
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
-              <div className="flex-1 relative">
-                <div className="absolute left-0 top-0 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold z-10">4</div>
-                <div className="border border-gray-200 rounded-lg p-6 pl-8 bg-white shadow-sm ml-5">
-                  <h3 className="text-xl font-semibold mb-2">Delivery Confirmation</h3>
+              <motion.div variants={fadeInUp} className="relative">
+                <motion.div 
+                  className="absolute left-0 top-0 w-10 h-10 rounded-full bg-gradient-to-r from-indigo-600 to-blue-600 text-white flex items-center justify-center font-bold z-10"
+                  whileHover={{ scale: 1.1 }}
+                >
+                  4
+                </motion.div>
+                <motion.div 
+                  className="border border-indigo-200 rounded-lg p-6 pl-8 bg-white shadow-lg ml-5 hover:shadow-xl transition-shadow duration-300"
+                  whileHover={{ y: -5 }}
+                  transition={{ type: "spring", stiffness: 400 }}
+                >
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Delivery Confirmation</h3>
                   <p className="text-gray-600">
                     QR code verification ensures secure and confirmed delivery at the destination.
                   </p>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-primary text-white">
+        <section className="py-20 bg-gradient-to-r from-indigo-600 to-blue-700 text-white">
           <div className="container mx-auto px-4 text-center">
-            <h2 className="text-3xl font-bold">Ready to get started?</h2>
-            <p className="mt-4 text-lg max-w-2xl mx-auto">
-              Join thousands of users who are already enjoying efficient and transparent delivery tracking
-            </p>
-            <div className="mt-8">
-              <Link href="/register">
-                <Button size="lg" variant="outline" className="bg-white text-primary hover:bg-gray-100">
-                  Create Your Account
-                </Button>
-              </Link>
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="text-3xl font-bold">Ready to get started?</h2>
+              <p className="mt-4 text-lg max-w-2xl mx-auto">
+                Join thousands of users who are already enjoying efficient and transparent delivery tracking
+              </p>
+              <motion.div 
+                className="mt-8"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link href="/register">
+                  <Button size="lg" className="bg-white text-indigo-700 hover:bg-indigo-50 shadow-lg shadow-indigo-800/30 transition-all duration-300">
+                    Create Your Account
+                  </Button>
+                </Link>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer id="contact" className="bg-gray-800 text-white py-12">
+      <footer id="contact" className="bg-gray-900 text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
               <div className="flex items-center mb-4">
-                <Package className="h-6 w-6 text-primary mr-2" />
-                <span className="text-xl font-bold">Smart Delivery</span>
+                <Package className="h-6 w-6 text-indigo-400 mr-2" />
+                <span className="text-xl font-bold bg-gradient-to-r from-indigo-400 to-blue-400 bg-clip-text text-transparent">
+                  Smart Delivery
+                </span>
               </div>
               <p className="text-gray-400">
                 Modern delivery tracking platform with real-time updates and secure verification.
               </p>
-            </div>
+            </motion.div>
             
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Features</h3>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-lg font-semibold mb-4 text-indigo-300">Features</h3>
               <ul className="space-y-2">
-                <li><Link href="#" className="text-gray-400 hover:text-white">Real-time Tracking</Link></li>
-                <li><Link href="#" className="text-gray-400 hover:text-white">QR Verification</Link></li>
-                <li><Link href="#" className="text-gray-400 hover:text-white">Agent Dashboard</Link></li>
-                <li><Link href="#" className="text-gray-400 hover:text-white">Status Updates</Link></li>
+                <li><Link href="#" className="text-gray-400 hover:text-indigo-300 transition-colors duration-300">Real-time Tracking</Link></li>
+                <li><Link href="#" className="text-gray-400 hover:text-indigo-300 transition-colors duration-300">QR Verification</Link></li>
+                <li><Link href="#" className="text-gray-400 hover:text-indigo-300 transition-colors duration-300">Agent Dashboard</Link></li>
+                <li><Link href="#" className="text-gray-400 hover:text-indigo-300 transition-colors duration-300">Status Updates</Link></li>
               </ul>
-            </div>
+            </motion.div>
             
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Company</h3>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-lg font-semibold mb-4 text-indigo-300">Company</h3>
               <ul className="space-y-2">
-                <li><Link href="#" className="text-gray-400 hover:text-white">About Us</Link></li>
-                <li><Link href="#" className="text-gray-400 hover:text-white">Careers</Link></li>
-                <li><Link href="#" className="text-gray-400 hover:text-white">Contact Us</Link></li>
-                <li><Link href="#" className="text-gray-400 hover:text-white">Privacy Policy</Link></li>
+                <li><Link href="#" className="text-gray-400 hover:text-indigo-300 transition-colors duration-300">About Us</Link></li>
+                <li><Link href="#" className="text-gray-400 hover:text-indigo-300 transition-colors duration-300">Careers</Link></li>
+                <li><Link href="#" className="text-gray-400 hover:text-indigo-300 transition-colors duration-300">Contact Us</Link></li>
+                <li><Link href="#" className="text-gray-400 hover:text-indigo-300 transition-colors duration-300">Privacy Policy</Link></li>
               </ul>
-            </div>
+            </motion.div>
             
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-lg font-semibold mb-4 text-indigo-300">Contact</h3>
               <ul className="space-y-2 text-gray-400">
-                <li>123 Street Name, City</li>
-                <li>contact@smartdelivery.com</li>
-                <li>(123) 456-7890</li>
+                <li className="hover:text-indigo-300 transition-colors duration-300">123 Street Name, City</li>
+                <li className="hover:text-indigo-300 transition-colors duration-300">contact@smartdelivery.com</li>
+                <li className="hover:text-indigo-300 transition-colors duration-300">(123) 456-7890</li>
               </ul>
-            </div>
+            </motion.div>
           </div>
           
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+          <motion.div
+            className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
             <p>&copy; {new Date().getFullYear()} Smart Delivery Tracker. All rights reserved.</p>
-          </div>
+          </motion.div>
         </div>
       </footer>
     </div>

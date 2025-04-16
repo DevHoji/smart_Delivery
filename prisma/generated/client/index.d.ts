@@ -1267,17 +1267,17 @@ export namespace Prisma {
    */
 
   export type UserCountOutputType = {
-    sentDeliveries: number
     agentDeliveries: number
-    messages: number
+    sentDeliveries: number
     locations: number
+    messages: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sentDeliveries?: boolean | UserCountOutputTypeCountSentDeliveriesArgs
     agentDeliveries?: boolean | UserCountOutputTypeCountAgentDeliveriesArgs
-    messages?: boolean | UserCountOutputTypeCountMessagesArgs
+    sentDeliveries?: boolean | UserCountOutputTypeCountSentDeliveriesArgs
     locations?: boolean | UserCountOutputTypeCountLocationsArgs
+    messages?: boolean | UserCountOutputTypeCountMessagesArgs
   }
 
   // Custom InputTypes
@@ -1294,13 +1294,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountSentDeliveriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: DeliveryWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountAgentDeliveriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DeliveryWhereInput
   }
@@ -1308,8 +1301,8 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MessageWhereInput
+  export type UserCountOutputTypeCountSentDeliveriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DeliveryWhereInput
   }
 
   /**
@@ -1319,20 +1312,27 @@ export namespace Prisma {
     where?: LocationWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MessageWhereInput
+  }
+
 
   /**
    * Count Type DeliveryCountOutputType
    */
 
   export type DeliveryCountOutputType = {
-    messages: number
     locations: number
+    messages: number
     statusUpdates: number
   }
 
   export type DeliveryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    messages?: boolean | DeliveryCountOutputTypeCountMessagesArgs
     locations?: boolean | DeliveryCountOutputTypeCountLocationsArgs
+    messages?: boolean | DeliveryCountOutputTypeCountMessagesArgs
     statusUpdates?: boolean | DeliveryCountOutputTypeCountStatusUpdatesArgs
   }
 
@@ -1350,15 +1350,15 @@ export namespace Prisma {
   /**
    * DeliveryCountOutputType without action
    */
-  export type DeliveryCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: MessageWhereInput
+  export type DeliveryCountOutputTypeCountLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: LocationWhereInput
   }
 
   /**
    * DeliveryCountOutputType without action
    */
-  export type DeliveryCountOutputTypeCountLocationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: LocationWhereInput
+  export type DeliveryCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MessageWhereInput
   }
 
   /**
@@ -1561,10 +1561,10 @@ export namespace Prisma {
     image?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sentDeliveries?: boolean | User$sentDeliveriesArgs<ExtArgs>
     agentDeliveries?: boolean | User$agentDeliveriesArgs<ExtArgs>
-    messages?: boolean | User$messagesArgs<ExtArgs>
+    sentDeliveries?: boolean | User$sentDeliveriesArgs<ExtArgs>
     locations?: boolean | User$locationsArgs<ExtArgs>
+    messages?: boolean | User$messagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -1603,10 +1603,10 @@ export namespace Prisma {
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "role" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sentDeliveries?: boolean | User$sentDeliveriesArgs<ExtArgs>
     agentDeliveries?: boolean | User$agentDeliveriesArgs<ExtArgs>
-    messages?: boolean | User$messagesArgs<ExtArgs>
+    sentDeliveries?: boolean | User$sentDeliveriesArgs<ExtArgs>
     locations?: boolean | User$locationsArgs<ExtArgs>
+    messages?: boolean | User$messagesArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1615,10 +1615,10 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
-      sentDeliveries: Prisma.$DeliveryPayload<ExtArgs>[]
       agentDeliveries: Prisma.$DeliveryPayload<ExtArgs>[]
-      messages: Prisma.$MessagePayload<ExtArgs>[]
+      sentDeliveries: Prisma.$DeliveryPayload<ExtArgs>[]
       locations: Prisma.$LocationPayload<ExtArgs>[]
+      messages: Prisma.$MessagePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2023,10 +2023,10 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sentDeliveries<T extends User$sentDeliveriesArgs<ExtArgs> = {}>(args?: Subset<T, User$sentDeliveriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     agentDeliveries<T extends User$agentDeliveriesArgs<ExtArgs> = {}>(args?: Subset<T, User$agentDeliveriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    messages<T extends User$messagesArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sentDeliveries<T extends User$sentDeliveriesArgs<ExtArgs> = {}>(args?: Subset<T, User$sentDeliveriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DeliveryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     locations<T extends User$locationsArgs<ExtArgs> = {}>(args?: Subset<T, User$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    messages<T extends User$messagesArgs<ExtArgs> = {}>(args?: Subset<T, User$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2452,30 +2452,6 @@ export namespace Prisma {
   }
 
   /**
-   * User.sentDeliveries
-   */
-  export type User$sentDeliveriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Delivery
-     */
-    select?: DeliverySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Delivery
-     */
-    omit?: DeliveryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DeliveryInclude<ExtArgs> | null
-    where?: DeliveryWhereInput
-    orderBy?: DeliveryOrderByWithRelationInput | DeliveryOrderByWithRelationInput[]
-    cursor?: DeliveryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: DeliveryScalarFieldEnum | DeliveryScalarFieldEnum[]
-  }
-
-  /**
    * User.agentDeliveries
    */
   export type User$agentDeliveriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2500,27 +2476,27 @@ export namespace Prisma {
   }
 
   /**
-   * User.messages
+   * User.sentDeliveries
    */
-  export type User$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type User$sentDeliveriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Message
+     * Select specific fields to fetch from the Delivery
      */
-    select?: MessageSelect<ExtArgs> | null
+    select?: DeliverySelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Message
+     * Omit specific fields from the Delivery
      */
-    omit?: MessageOmit<ExtArgs> | null
+    omit?: DeliveryOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: MessageInclude<ExtArgs> | null
-    where?: MessageWhereInput
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
-    cursor?: MessageWhereUniqueInput
+    include?: DeliveryInclude<ExtArgs> | null
+    where?: DeliveryWhereInput
+    orderBy?: DeliveryOrderByWithRelationInput | DeliveryOrderByWithRelationInput[]
+    cursor?: DeliveryWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
+    distinct?: DeliveryScalarFieldEnum | DeliveryScalarFieldEnum[]
   }
 
   /**
@@ -2545,6 +2521,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LocationScalarFieldEnum | LocationScalarFieldEnum[]
+  }
+
+  /**
+   * User.messages
+   */
+  export type User$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Message
+     */
+    select?: MessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Message
+     */
+    omit?: MessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MessageInclude<ExtArgs> | null
+    where?: MessageWhereInput
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    cursor?: MessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
 
   /**
@@ -2932,10 +2932,10 @@ export namespace Prisma {
     qrCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     agent?: boolean | Delivery$agentArgs<ExtArgs>
-    messages?: boolean | Delivery$messagesArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
     locations?: boolean | Delivery$locationsArgs<ExtArgs>
+    messages?: boolean | Delivery$messagesArgs<ExtArgs>
     statusUpdates?: boolean | Delivery$statusUpdatesArgs<ExtArgs>
     _count?: boolean | DeliveryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["delivery"]>
@@ -2965,8 +2965,8 @@ export namespace Prisma {
     qrCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     agent?: boolean | Delivery$agentArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["delivery"]>
 
   export type DeliverySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -2994,8 +2994,8 @@ export namespace Prisma {
     qrCode?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     agent?: boolean | Delivery$agentArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["delivery"]>
 
   export type DeliverySelectScalar = {
@@ -3027,29 +3027,29 @@ export namespace Prisma {
 
   export type DeliveryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "trackingId" | "senderId" | "agentId" | "status" | "origin" | "destination" | "pickupAddress" | "deliveryAddress" | "pickupLat" | "pickupLng" | "deliveryLat" | "deliveryLng" | "packageInfo" | "packageDescription" | "weight" | "dimensions" | "notes" | "estimatedDelivery" | "imageUrl" | "description" | "qrCode" | "createdAt" | "updatedAt", ExtArgs["result"]["delivery"]>
   export type DeliveryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     agent?: boolean | Delivery$agentArgs<ExtArgs>
-    messages?: boolean | Delivery$messagesArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
     locations?: boolean | Delivery$locationsArgs<ExtArgs>
+    messages?: boolean | Delivery$messagesArgs<ExtArgs>
     statusUpdates?: boolean | Delivery$statusUpdatesArgs<ExtArgs>
     _count?: boolean | DeliveryCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type DeliveryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     agent?: boolean | Delivery$agentArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type DeliveryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     agent?: boolean | Delivery$agentArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $DeliveryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Delivery"
     objects: {
-      sender: Prisma.$UserPayload<ExtArgs>
       agent: Prisma.$UserPayload<ExtArgs> | null
-      messages: Prisma.$MessagePayload<ExtArgs>[]
+      sender: Prisma.$UserPayload<ExtArgs>
       locations: Prisma.$LocationPayload<ExtArgs>[]
+      messages: Prisma.$MessagePayload<ExtArgs>[]
       statusUpdates: Prisma.$StatusUpdatePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3471,10 +3471,10 @@ export namespace Prisma {
    */
   export interface Prisma__DeliveryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sender<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     agent<T extends Delivery$agentArgs<ExtArgs> = {}>(args?: Subset<T, Delivery$agentArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-    messages<T extends Delivery$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Delivery$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    sender<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     locations<T extends Delivery$locationsArgs<ExtArgs> = {}>(args?: Subset<T, Delivery$locationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    messages<T extends Delivery$messagesArgs<ExtArgs> = {}>(args?: Subset<T, Delivery$messagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     statusUpdates<T extends Delivery$statusUpdatesArgs<ExtArgs> = {}>(args?: Subset<T, Delivery$statusUpdatesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StatusUpdatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -3944,30 +3944,6 @@ export namespace Prisma {
   }
 
   /**
-   * Delivery.messages
-   */
-  export type Delivery$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Message
-     */
-    select?: MessageSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Message
-     */
-    omit?: MessageOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: MessageInclude<ExtArgs> | null
-    where?: MessageWhereInput
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
-    cursor?: MessageWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
-  }
-
-  /**
    * Delivery.locations
    */
   export type Delivery$locationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3989,6 +3965,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: LocationScalarFieldEnum | LocationScalarFieldEnum[]
+  }
+
+  /**
+   * Delivery.messages
+   */
+  export type Delivery$messagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Message
+     */
+    select?: MessageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Message
+     */
+    omit?: MessageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MessageInclude<ExtArgs> | null
+    where?: MessageWhereInput
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    cursor?: MessageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
 
   /**
@@ -5256,8 +5256,8 @@ export namespace Prisma {
     senderId?: boolean
     deliveryId?: boolean
     createdAt?: boolean
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     delivery?: boolean | DeliveryDefaultArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5266,8 +5266,8 @@ export namespace Prisma {
     senderId?: boolean
     deliveryId?: boolean
     createdAt?: boolean
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     delivery?: boolean | DeliveryDefaultArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5276,8 +5276,8 @@ export namespace Prisma {
     senderId?: boolean
     deliveryId?: boolean
     createdAt?: boolean
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     delivery?: boolean | DeliveryDefaultArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["message"]>
 
   export type MessageSelectScalar = {
@@ -5290,23 +5290,23 @@ export namespace Prisma {
 
   export type MessageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "content" | "senderId" | "deliveryId" | "createdAt", ExtArgs["result"]["message"]>
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     delivery?: boolean | DeliveryDefaultArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type MessageIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     delivery?: boolean | DeliveryDefaultArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }
   export type MessageIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    sender?: boolean | UserDefaultArgs<ExtArgs>
     delivery?: boolean | DeliveryDefaultArgs<ExtArgs>
+    sender?: boolean | UserDefaultArgs<ExtArgs>
   }
 
   export type $MessagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Message"
     objects: {
-      sender: Prisma.$UserPayload<ExtArgs>
       delivery: Prisma.$DeliveryPayload<ExtArgs>
+      sender: Prisma.$UserPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -5708,8 +5708,8 @@ export namespace Prisma {
    */
   export interface Prisma__MessageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    sender<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     delivery<T extends DeliveryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DeliveryDefaultArgs<ExtArgs>>): Prisma__DeliveryClient<$Result.GetResult<Prisma.$DeliveryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    sender<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7495,10 +7495,10 @@ export namespace Prisma {
     image?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    sentDeliveries?: DeliveryListRelationFilter
     agentDeliveries?: DeliveryListRelationFilter
-    messages?: MessageListRelationFilter
+    sentDeliveries?: DeliveryListRelationFilter
     locations?: LocationListRelationFilter
+    messages?: MessageListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -7510,10 +7510,10 @@ export namespace Prisma {
     image?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sentDeliveries?: DeliveryOrderByRelationAggregateInput
     agentDeliveries?: DeliveryOrderByRelationAggregateInput
-    messages?: MessageOrderByRelationAggregateInput
+    sentDeliveries?: DeliveryOrderByRelationAggregateInput
     locations?: LocationOrderByRelationAggregateInput
+    messages?: MessageOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -7528,10 +7528,10 @@ export namespace Prisma {
     image?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    sentDeliveries?: DeliveryListRelationFilter
     agentDeliveries?: DeliveryListRelationFilter
-    messages?: MessageListRelationFilter
+    sentDeliveries?: DeliveryListRelationFilter
     locations?: LocationListRelationFilter
+    messages?: MessageListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -7590,10 +7590,10 @@ export namespace Prisma {
     qrCode?: StringNullableFilter<"Delivery"> | string | null
     createdAt?: DateTimeFilter<"Delivery"> | Date | string
     updatedAt?: DateTimeFilter<"Delivery"> | Date | string
-    sender?: XOR<UserScalarRelationFilter, UserWhereInput>
     agent?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    messages?: MessageListRelationFilter
+    sender?: XOR<UserScalarRelationFilter, UserWhereInput>
     locations?: LocationListRelationFilter
+    messages?: MessageListRelationFilter
     statusUpdates?: StatusUpdateListRelationFilter
   }
 
@@ -7622,10 +7622,10 @@ export namespace Prisma {
     qrCode?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    sender?: UserOrderByWithRelationInput
     agent?: UserOrderByWithRelationInput
-    messages?: MessageOrderByRelationAggregateInput
+    sender?: UserOrderByWithRelationInput
     locations?: LocationOrderByRelationAggregateInput
+    messages?: MessageOrderByRelationAggregateInput
     statusUpdates?: StatusUpdateOrderByRelationAggregateInput
   }
 
@@ -7657,10 +7657,10 @@ export namespace Prisma {
     qrCode?: StringNullableFilter<"Delivery"> | string | null
     createdAt?: DateTimeFilter<"Delivery"> | Date | string
     updatedAt?: DateTimeFilter<"Delivery"> | Date | string
-    sender?: XOR<UserScalarRelationFilter, UserWhereInput>
     agent?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
-    messages?: MessageListRelationFilter
+    sender?: XOR<UserScalarRelationFilter, UserWhereInput>
     locations?: LocationListRelationFilter
+    messages?: MessageListRelationFilter
     statusUpdates?: StatusUpdateListRelationFilter
   }, "id" | "trackingId">
 
@@ -7790,8 +7790,8 @@ export namespace Prisma {
     senderId?: StringFilter<"Message"> | string
     deliveryId?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
-    sender?: XOR<UserScalarRelationFilter, UserWhereInput>
     delivery?: XOR<DeliveryScalarRelationFilter, DeliveryWhereInput>
+    sender?: XOR<UserScalarRelationFilter, UserWhereInput>
   }
 
   export type MessageOrderByWithRelationInput = {
@@ -7800,8 +7800,8 @@ export namespace Prisma {
     senderId?: SortOrder
     deliveryId?: SortOrder
     createdAt?: SortOrder
-    sender?: UserOrderByWithRelationInput
     delivery?: DeliveryOrderByWithRelationInput
+    sender?: UserOrderByWithRelationInput
   }
 
   export type MessageWhereUniqueInput = Prisma.AtLeast<{
@@ -7813,8 +7813,8 @@ export namespace Prisma {
     senderId?: StringFilter<"Message"> | string
     deliveryId?: StringFilter<"Message"> | string
     createdAt?: DateTimeFilter<"Message"> | Date | string
-    sender?: XOR<UserScalarRelationFilter, UserWhereInput>
     delivery?: XOR<DeliveryScalarRelationFilter, DeliveryWhereInput>
+    sender?: XOR<UserScalarRelationFilter, UserWhereInput>
   }, "id">
 
   export type MessageOrderByWithAggregationInput = {
@@ -7913,10 +7913,10 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sentDeliveries?: DeliveryCreateNestedManyWithoutSenderInput
     agentDeliveries?: DeliveryCreateNestedManyWithoutAgentInput
-    messages?: MessageCreateNestedManyWithoutSenderInput
+    sentDeliveries?: DeliveryCreateNestedManyWithoutSenderInput
     locations?: LocationCreateNestedManyWithoutAgentInput
+    messages?: MessageCreateNestedManyWithoutSenderInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -7928,10 +7928,10 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutSenderInput
     agentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutAgentInput
-    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    sentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutSenderInput
     locations?: LocationUncheckedCreateNestedManyWithoutAgentInput
+    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
   }
 
   export type UserUpdateInput = {
@@ -7943,10 +7943,10 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sentDeliveries?: DeliveryUpdateManyWithoutSenderNestedInput
     agentDeliveries?: DeliveryUpdateManyWithoutAgentNestedInput
-    messages?: MessageUpdateManyWithoutSenderNestedInput
+    sentDeliveries?: DeliveryUpdateManyWithoutSenderNestedInput
     locations?: LocationUpdateManyWithoutAgentNestedInput
+    messages?: MessageUpdateManyWithoutSenderNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -7958,10 +7958,10 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sentDeliveries?: DeliveryUncheckedUpdateManyWithoutSenderNestedInput
     agentDeliveries?: DeliveryUncheckedUpdateManyWithoutAgentNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    sentDeliveries?: DeliveryUncheckedUpdateManyWithoutSenderNestedInput
     locations?: LocationUncheckedUpdateManyWithoutAgentNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -8020,10 +8020,10 @@ export namespace Prisma {
     qrCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sender: UserCreateNestedOneWithoutSentDeliveriesInput
     agent?: UserCreateNestedOneWithoutAgentDeliveriesInput
-    messages?: MessageCreateNestedManyWithoutDeliveryInput
+    sender: UserCreateNestedOneWithoutSentDeliveriesInput
     locations?: LocationCreateNestedManyWithoutDeliveryInput
+    messages?: MessageCreateNestedManyWithoutDeliveryInput
     statusUpdates?: StatusUpdateCreateNestedManyWithoutDeliveryInput
   }
 
@@ -8052,8 +8052,8 @@ export namespace Prisma {
     qrCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    messages?: MessageUncheckedCreateNestedManyWithoutDeliveryInput
     locations?: LocationUncheckedCreateNestedManyWithoutDeliveryInput
+    messages?: MessageUncheckedCreateNestedManyWithoutDeliveryInput
     statusUpdates?: StatusUpdateUncheckedCreateNestedManyWithoutDeliveryInput
   }
 
@@ -8080,10 +8080,10 @@ export namespace Prisma {
     qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
     agent?: UserUpdateOneWithoutAgentDeliveriesNestedInput
-    messages?: MessageUpdateManyWithoutDeliveryNestedInput
+    sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
     locations?: LocationUpdateManyWithoutDeliveryNestedInput
+    messages?: MessageUpdateManyWithoutDeliveryNestedInput
     statusUpdates?: StatusUpdateUpdateManyWithoutDeliveryNestedInput
   }
 
@@ -8112,8 +8112,8 @@ export namespace Prisma {
     qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    messages?: MessageUncheckedUpdateManyWithoutDeliveryNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDeliveryNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutDeliveryNestedInput
     statusUpdates?: StatusUpdateUncheckedUpdateManyWithoutDeliveryNestedInput
   }
 
@@ -8255,8 +8255,8 @@ export namespace Prisma {
     id?: string
     content: string
     createdAt?: Date | string
-    sender: UserCreateNestedOneWithoutMessagesInput
     delivery: DeliveryCreateNestedOneWithoutMessagesInput
+    sender: UserCreateNestedOneWithoutMessagesInput
   }
 
   export type MessageUncheckedCreateInput = {
@@ -8271,8 +8271,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     content?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sender?: UserUpdateOneRequiredWithoutMessagesNestedInput
     delivery?: DeliveryUpdateOneRequiredWithoutMessagesNestedInput
+    sender?: UserUpdateOneRequiredWithoutMessagesNestedInput
   }
 
   export type MessageUncheckedUpdateInput = {
@@ -8420,16 +8420,16 @@ export namespace Prisma {
     none?: DeliveryWhereInput
   }
 
-  export type MessageListRelationFilter = {
-    every?: MessageWhereInput
-    some?: MessageWhereInput
-    none?: MessageWhereInput
-  }
-
   export type LocationListRelationFilter = {
     every?: LocationWhereInput
     some?: LocationWhereInput
     none?: LocationWhereInput
+  }
+
+  export type MessageListRelationFilter = {
+    every?: MessageWhereInput
+    some?: MessageWhereInput
+    none?: MessageWhereInput
   }
 
   export type SortOrderInput = {
@@ -8441,11 +8441,11 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type MessageOrderByRelationAggregateInput = {
+  export type LocationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type LocationOrderByRelationAggregateInput = {
+  export type MessageOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -8571,14 +8571,14 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type UserScalarRelationFilter = {
-    is?: UserWhereInput
-    isNot?: UserWhereInput
-  }
-
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
   }
 
   export type StatusUpdateListRelationFilter = {
@@ -8845,13 +8845,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type DeliveryCreateNestedManyWithoutSenderInput = {
-    create?: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput> | DeliveryCreateWithoutSenderInput[] | DeliveryUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: DeliveryCreateOrConnectWithoutSenderInput | DeliveryCreateOrConnectWithoutSenderInput[]
-    createMany?: DeliveryCreateManySenderInputEnvelope
-    connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-  }
-
   export type DeliveryCreateNestedManyWithoutAgentInput = {
     create?: XOR<DeliveryCreateWithoutAgentInput, DeliveryUncheckedCreateWithoutAgentInput> | DeliveryCreateWithoutAgentInput[] | DeliveryUncheckedCreateWithoutAgentInput[]
     connectOrCreate?: DeliveryCreateOrConnectWithoutAgentInput | DeliveryCreateOrConnectWithoutAgentInput[]
@@ -8859,11 +8852,11 @@ export namespace Prisma {
     connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
   }
 
-  export type MessageCreateNestedManyWithoutSenderInput = {
-    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
-    createMany?: MessageCreateManySenderInputEnvelope
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  export type DeliveryCreateNestedManyWithoutSenderInput = {
+    create?: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput> | DeliveryCreateWithoutSenderInput[] | DeliveryUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: DeliveryCreateOrConnectWithoutSenderInput | DeliveryCreateOrConnectWithoutSenderInput[]
+    createMany?: DeliveryCreateManySenderInputEnvelope
+    connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
   }
 
   export type LocationCreateNestedManyWithoutAgentInput = {
@@ -8873,11 +8866,11 @@ export namespace Prisma {
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
   }
 
-  export type DeliveryUncheckedCreateNestedManyWithoutSenderInput = {
-    create?: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput> | DeliveryCreateWithoutSenderInput[] | DeliveryUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: DeliveryCreateOrConnectWithoutSenderInput | DeliveryCreateOrConnectWithoutSenderInput[]
-    createMany?: DeliveryCreateManySenderInputEnvelope
-    connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+  export type MessageCreateNestedManyWithoutSenderInput = {
+    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
+    createMany?: MessageCreateManySenderInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
   export type DeliveryUncheckedCreateNestedManyWithoutAgentInput = {
@@ -8887,11 +8880,11 @@ export namespace Prisma {
     connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
   }
 
-  export type MessageUncheckedCreateNestedManyWithoutSenderInput = {
-    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
-    createMany?: MessageCreateManySenderInputEnvelope
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  export type DeliveryUncheckedCreateNestedManyWithoutSenderInput = {
+    create?: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput> | DeliveryCreateWithoutSenderInput[] | DeliveryUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: DeliveryCreateOrConnectWithoutSenderInput | DeliveryCreateOrConnectWithoutSenderInput[]
+    createMany?: DeliveryCreateManySenderInputEnvelope
+    connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
   }
 
   export type LocationUncheckedCreateNestedManyWithoutAgentInput = {
@@ -8899,6 +8892,13 @@ export namespace Prisma {
     connectOrCreate?: LocationCreateOrConnectWithoutAgentInput | LocationCreateOrConnectWithoutAgentInput[]
     createMany?: LocationCreateManyAgentInputEnvelope
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+  }
+
+  export type MessageUncheckedCreateNestedManyWithoutSenderInput = {
+    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
+    createMany?: MessageCreateManySenderInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -8917,20 +8917,6 @@ export namespace Prisma {
     set?: Date | string
   }
 
-  export type DeliveryUpdateManyWithoutSenderNestedInput = {
-    create?: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput> | DeliveryCreateWithoutSenderInput[] | DeliveryUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: DeliveryCreateOrConnectWithoutSenderInput | DeliveryCreateOrConnectWithoutSenderInput[]
-    upsert?: DeliveryUpsertWithWhereUniqueWithoutSenderInput | DeliveryUpsertWithWhereUniqueWithoutSenderInput[]
-    createMany?: DeliveryCreateManySenderInputEnvelope
-    set?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-    disconnect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-    delete?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-    connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-    update?: DeliveryUpdateWithWhereUniqueWithoutSenderInput | DeliveryUpdateWithWhereUniqueWithoutSenderInput[]
-    updateMany?: DeliveryUpdateManyWithWhereWithoutSenderInput | DeliveryUpdateManyWithWhereWithoutSenderInput[]
-    deleteMany?: DeliveryScalarWhereInput | DeliveryScalarWhereInput[]
-  }
-
   export type DeliveryUpdateManyWithoutAgentNestedInput = {
     create?: XOR<DeliveryCreateWithoutAgentInput, DeliveryUncheckedCreateWithoutAgentInput> | DeliveryCreateWithoutAgentInput[] | DeliveryUncheckedCreateWithoutAgentInput[]
     connectOrCreate?: DeliveryCreateOrConnectWithoutAgentInput | DeliveryCreateOrConnectWithoutAgentInput[]
@@ -8945,18 +8931,18 @@ export namespace Prisma {
     deleteMany?: DeliveryScalarWhereInput | DeliveryScalarWhereInput[]
   }
 
-  export type MessageUpdateManyWithoutSenderNestedInput = {
-    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutSenderInput | MessageUpsertWithWhereUniqueWithoutSenderInput[]
-    createMany?: MessageCreateManySenderInputEnvelope
-    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutSenderInput | MessageUpdateWithWhereUniqueWithoutSenderInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutSenderInput | MessageUpdateManyWithWhereWithoutSenderInput[]
-    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  export type DeliveryUpdateManyWithoutSenderNestedInput = {
+    create?: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput> | DeliveryCreateWithoutSenderInput[] | DeliveryUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: DeliveryCreateOrConnectWithoutSenderInput | DeliveryCreateOrConnectWithoutSenderInput[]
+    upsert?: DeliveryUpsertWithWhereUniqueWithoutSenderInput | DeliveryUpsertWithWhereUniqueWithoutSenderInput[]
+    createMany?: DeliveryCreateManySenderInputEnvelope
+    set?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+    disconnect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+    delete?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+    connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+    update?: DeliveryUpdateWithWhereUniqueWithoutSenderInput | DeliveryUpdateWithWhereUniqueWithoutSenderInput[]
+    updateMany?: DeliveryUpdateManyWithWhereWithoutSenderInput | DeliveryUpdateManyWithWhereWithoutSenderInput[]
+    deleteMany?: DeliveryScalarWhereInput | DeliveryScalarWhereInput[]
   }
 
   export type LocationUpdateManyWithoutAgentNestedInput = {
@@ -8973,18 +8959,18 @@ export namespace Prisma {
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
-  export type DeliveryUncheckedUpdateManyWithoutSenderNestedInput = {
-    create?: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput> | DeliveryCreateWithoutSenderInput[] | DeliveryUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: DeliveryCreateOrConnectWithoutSenderInput | DeliveryCreateOrConnectWithoutSenderInput[]
-    upsert?: DeliveryUpsertWithWhereUniqueWithoutSenderInput | DeliveryUpsertWithWhereUniqueWithoutSenderInput[]
-    createMany?: DeliveryCreateManySenderInputEnvelope
-    set?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-    disconnect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-    delete?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-    connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
-    update?: DeliveryUpdateWithWhereUniqueWithoutSenderInput | DeliveryUpdateWithWhereUniqueWithoutSenderInput[]
-    updateMany?: DeliveryUpdateManyWithWhereWithoutSenderInput | DeliveryUpdateManyWithWhereWithoutSenderInput[]
-    deleteMany?: DeliveryScalarWhereInput | DeliveryScalarWhereInput[]
+  export type MessageUpdateManyWithoutSenderNestedInput = {
+    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutSenderInput | MessageUpsertWithWhereUniqueWithoutSenderInput[]
+    createMany?: MessageCreateManySenderInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutSenderInput | MessageUpdateWithWhereUniqueWithoutSenderInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutSenderInput | MessageUpdateManyWithWhereWithoutSenderInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
   export type DeliveryUncheckedUpdateManyWithoutAgentNestedInput = {
@@ -9001,18 +8987,18 @@ export namespace Prisma {
     deleteMany?: DeliveryScalarWhereInput | DeliveryScalarWhereInput[]
   }
 
-  export type MessageUncheckedUpdateManyWithoutSenderNestedInput = {
-    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutSenderInput | MessageUpsertWithWhereUniqueWithoutSenderInput[]
-    createMany?: MessageCreateManySenderInputEnvelope
-    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutSenderInput | MessageUpdateWithWhereUniqueWithoutSenderInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutSenderInput | MessageUpdateManyWithWhereWithoutSenderInput[]
-    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  export type DeliveryUncheckedUpdateManyWithoutSenderNestedInput = {
+    create?: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput> | DeliveryCreateWithoutSenderInput[] | DeliveryUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: DeliveryCreateOrConnectWithoutSenderInput | DeliveryCreateOrConnectWithoutSenderInput[]
+    upsert?: DeliveryUpsertWithWhereUniqueWithoutSenderInput | DeliveryUpsertWithWhereUniqueWithoutSenderInput[]
+    createMany?: DeliveryCreateManySenderInputEnvelope
+    set?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+    disconnect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+    delete?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+    connect?: DeliveryWhereUniqueInput | DeliveryWhereUniqueInput[]
+    update?: DeliveryUpdateWithWhereUniqueWithoutSenderInput | DeliveryUpdateWithWhereUniqueWithoutSenderInput[]
+    updateMany?: DeliveryUpdateManyWithWhereWithoutSenderInput | DeliveryUpdateManyWithWhereWithoutSenderInput[]
+    deleteMany?: DeliveryScalarWhereInput | DeliveryScalarWhereInput[]
   }
 
   export type LocationUncheckedUpdateManyWithoutAgentNestedInput = {
@@ -9029,10 +9015,18 @@ export namespace Prisma {
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
-  export type UserCreateNestedOneWithoutSentDeliveriesInput = {
-    create?: XOR<UserCreateWithoutSentDeliveriesInput, UserUncheckedCreateWithoutSentDeliveriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSentDeliveriesInput
-    connect?: UserWhereUniqueInput
+  export type MessageUncheckedUpdateManyWithoutSenderNestedInput = {
+    create?: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput> | MessageCreateWithoutSenderInput[] | MessageUncheckedCreateWithoutSenderInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutSenderInput | MessageCreateOrConnectWithoutSenderInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutSenderInput | MessageUpsertWithWhereUniqueWithoutSenderInput[]
+    createMany?: MessageCreateManySenderInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutSenderInput | MessageUpdateWithWhereUniqueWithoutSenderInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutSenderInput | MessageUpdateManyWithWhereWithoutSenderInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
   export type UserCreateNestedOneWithoutAgentDeliveriesInput = {
@@ -9041,11 +9035,10 @@ export namespace Prisma {
     connect?: UserWhereUniqueInput
   }
 
-  export type MessageCreateNestedManyWithoutDeliveryInput = {
-    create?: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput> | MessageCreateWithoutDeliveryInput[] | MessageUncheckedCreateWithoutDeliveryInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutDeliveryInput | MessageCreateOrConnectWithoutDeliveryInput[]
-    createMany?: MessageCreateManyDeliveryInputEnvelope
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  export type UserCreateNestedOneWithoutSentDeliveriesInput = {
+    create?: XOR<UserCreateWithoutSentDeliveriesInput, UserUncheckedCreateWithoutSentDeliveriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSentDeliveriesInput
+    connect?: UserWhereUniqueInput
   }
 
   export type LocationCreateNestedManyWithoutDeliveryInput = {
@@ -9055,6 +9048,13 @@ export namespace Prisma {
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
   }
 
+  export type MessageCreateNestedManyWithoutDeliveryInput = {
+    create?: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput> | MessageCreateWithoutDeliveryInput[] | MessageUncheckedCreateWithoutDeliveryInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutDeliveryInput | MessageCreateOrConnectWithoutDeliveryInput[]
+    createMany?: MessageCreateManyDeliveryInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+  }
+
   export type StatusUpdateCreateNestedManyWithoutDeliveryInput = {
     create?: XOR<StatusUpdateCreateWithoutDeliveryInput, StatusUpdateUncheckedCreateWithoutDeliveryInput> | StatusUpdateCreateWithoutDeliveryInput[] | StatusUpdateUncheckedCreateWithoutDeliveryInput[]
     connectOrCreate?: StatusUpdateCreateOrConnectWithoutDeliveryInput | StatusUpdateCreateOrConnectWithoutDeliveryInput[]
@@ -9062,18 +9062,18 @@ export namespace Prisma {
     connect?: StatusUpdateWhereUniqueInput | StatusUpdateWhereUniqueInput[]
   }
 
-  export type MessageUncheckedCreateNestedManyWithoutDeliveryInput = {
-    create?: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput> | MessageCreateWithoutDeliveryInput[] | MessageUncheckedCreateWithoutDeliveryInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutDeliveryInput | MessageCreateOrConnectWithoutDeliveryInput[]
-    createMany?: MessageCreateManyDeliveryInputEnvelope
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-  }
-
   export type LocationUncheckedCreateNestedManyWithoutDeliveryInput = {
     create?: XOR<LocationCreateWithoutDeliveryInput, LocationUncheckedCreateWithoutDeliveryInput> | LocationCreateWithoutDeliveryInput[] | LocationUncheckedCreateWithoutDeliveryInput[]
     connectOrCreate?: LocationCreateOrConnectWithoutDeliveryInput | LocationCreateOrConnectWithoutDeliveryInput[]
     createMany?: LocationCreateManyDeliveryInputEnvelope
     connect?: LocationWhereUniqueInput | LocationWhereUniqueInput[]
+  }
+
+  export type MessageUncheckedCreateNestedManyWithoutDeliveryInput = {
+    create?: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput> | MessageCreateWithoutDeliveryInput[] | MessageUncheckedCreateWithoutDeliveryInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutDeliveryInput | MessageCreateOrConnectWithoutDeliveryInput[]
+    createMany?: MessageCreateManyDeliveryInputEnvelope
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
   }
 
   export type StatusUpdateUncheckedCreateNestedManyWithoutDeliveryInput = {
@@ -9099,14 +9099,6 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type UserUpdateOneRequiredWithoutSentDeliveriesNestedInput = {
-    create?: XOR<UserCreateWithoutSentDeliveriesInput, UserUncheckedCreateWithoutSentDeliveriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutSentDeliveriesInput
-    upsert?: UserUpsertWithoutSentDeliveriesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSentDeliveriesInput, UserUpdateWithoutSentDeliveriesInput>, UserUncheckedUpdateWithoutSentDeliveriesInput>
-  }
-
   export type UserUpdateOneWithoutAgentDeliveriesNestedInput = {
     create?: XOR<UserCreateWithoutAgentDeliveriesInput, UserUncheckedCreateWithoutAgentDeliveriesInput>
     connectOrCreate?: UserCreateOrConnectWithoutAgentDeliveriesInput
@@ -9117,18 +9109,12 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAgentDeliveriesInput, UserUpdateWithoutAgentDeliveriesInput>, UserUncheckedUpdateWithoutAgentDeliveriesInput>
   }
 
-  export type MessageUpdateManyWithoutDeliveryNestedInput = {
-    create?: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput> | MessageCreateWithoutDeliveryInput[] | MessageUncheckedCreateWithoutDeliveryInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutDeliveryInput | MessageCreateOrConnectWithoutDeliveryInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutDeliveryInput | MessageUpsertWithWhereUniqueWithoutDeliveryInput[]
-    createMany?: MessageCreateManyDeliveryInputEnvelope
-    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutDeliveryInput | MessageUpdateWithWhereUniqueWithoutDeliveryInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutDeliveryInput | MessageUpdateManyWithWhereWithoutDeliveryInput[]
-    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  export type UserUpdateOneRequiredWithoutSentDeliveriesNestedInput = {
+    create?: XOR<UserCreateWithoutSentDeliveriesInput, UserUncheckedCreateWithoutSentDeliveriesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutSentDeliveriesInput
+    upsert?: UserUpsertWithoutSentDeliveriesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutSentDeliveriesInput, UserUpdateWithoutSentDeliveriesInput>, UserUncheckedUpdateWithoutSentDeliveriesInput>
   }
 
   export type LocationUpdateManyWithoutDeliveryNestedInput = {
@@ -9145,6 +9131,20 @@ export namespace Prisma {
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
   }
 
+  export type MessageUpdateManyWithoutDeliveryNestedInput = {
+    create?: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput> | MessageCreateWithoutDeliveryInput[] | MessageUncheckedCreateWithoutDeliveryInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutDeliveryInput | MessageCreateOrConnectWithoutDeliveryInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutDeliveryInput | MessageUpsertWithWhereUniqueWithoutDeliveryInput[]
+    createMany?: MessageCreateManyDeliveryInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutDeliveryInput | MessageUpdateWithWhereUniqueWithoutDeliveryInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutDeliveryInput | MessageUpdateManyWithWhereWithoutDeliveryInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
+  }
+
   export type StatusUpdateUpdateManyWithoutDeliveryNestedInput = {
     create?: XOR<StatusUpdateCreateWithoutDeliveryInput, StatusUpdateUncheckedCreateWithoutDeliveryInput> | StatusUpdateCreateWithoutDeliveryInput[] | StatusUpdateUncheckedCreateWithoutDeliveryInput[]
     connectOrCreate?: StatusUpdateCreateOrConnectWithoutDeliveryInput | StatusUpdateCreateOrConnectWithoutDeliveryInput[]
@@ -9159,20 +9159,6 @@ export namespace Prisma {
     deleteMany?: StatusUpdateScalarWhereInput | StatusUpdateScalarWhereInput[]
   }
 
-  export type MessageUncheckedUpdateManyWithoutDeliveryNestedInput = {
-    create?: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput> | MessageCreateWithoutDeliveryInput[] | MessageUncheckedCreateWithoutDeliveryInput[]
-    connectOrCreate?: MessageCreateOrConnectWithoutDeliveryInput | MessageCreateOrConnectWithoutDeliveryInput[]
-    upsert?: MessageUpsertWithWhereUniqueWithoutDeliveryInput | MessageUpsertWithWhereUniqueWithoutDeliveryInput[]
-    createMany?: MessageCreateManyDeliveryInputEnvelope
-    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
-    update?: MessageUpdateWithWhereUniqueWithoutDeliveryInput | MessageUpdateWithWhereUniqueWithoutDeliveryInput[]
-    updateMany?: MessageUpdateManyWithWhereWithoutDeliveryInput | MessageUpdateManyWithWhereWithoutDeliveryInput[]
-    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
-  }
-
   export type LocationUncheckedUpdateManyWithoutDeliveryNestedInput = {
     create?: XOR<LocationCreateWithoutDeliveryInput, LocationUncheckedCreateWithoutDeliveryInput> | LocationCreateWithoutDeliveryInput[] | LocationUncheckedCreateWithoutDeliveryInput[]
     connectOrCreate?: LocationCreateOrConnectWithoutDeliveryInput | LocationCreateOrConnectWithoutDeliveryInput[]
@@ -9185,6 +9171,20 @@ export namespace Prisma {
     update?: LocationUpdateWithWhereUniqueWithoutDeliveryInput | LocationUpdateWithWhereUniqueWithoutDeliveryInput[]
     updateMany?: LocationUpdateManyWithWhereWithoutDeliveryInput | LocationUpdateManyWithWhereWithoutDeliveryInput[]
     deleteMany?: LocationScalarWhereInput | LocationScalarWhereInput[]
+  }
+
+  export type MessageUncheckedUpdateManyWithoutDeliveryNestedInput = {
+    create?: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput> | MessageCreateWithoutDeliveryInput[] | MessageUncheckedCreateWithoutDeliveryInput[]
+    connectOrCreate?: MessageCreateOrConnectWithoutDeliveryInput | MessageCreateOrConnectWithoutDeliveryInput[]
+    upsert?: MessageUpsertWithWhereUniqueWithoutDeliveryInput | MessageUpsertWithWhereUniqueWithoutDeliveryInput[]
+    createMany?: MessageCreateManyDeliveryInputEnvelope
+    set?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    disconnect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    delete?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    connect?: MessageWhereUniqueInput | MessageWhereUniqueInput[]
+    update?: MessageUpdateWithWhereUniqueWithoutDeliveryInput | MessageUpdateWithWhereUniqueWithoutDeliveryInput[]
+    updateMany?: MessageUpdateManyWithWhereWithoutDeliveryInput | MessageUpdateManyWithWhereWithoutDeliveryInput[]
+    deleteMany?: MessageScalarWhereInput | MessageScalarWhereInput[]
   }
 
   export type StatusUpdateUncheckedUpdateManyWithoutDeliveryNestedInput = {
@@ -9215,24 +9215,16 @@ export namespace Prisma {
     update?: XOR<XOR<DeliveryUpdateToOneWithWhereWithoutStatusUpdatesInput, DeliveryUpdateWithoutStatusUpdatesInput>, DeliveryUncheckedUpdateWithoutStatusUpdatesInput>
   }
 
-  export type UserCreateNestedOneWithoutMessagesInput = {
-    create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
-    connect?: UserWhereUniqueInput
-  }
-
   export type DeliveryCreateNestedOneWithoutMessagesInput = {
     create?: XOR<DeliveryCreateWithoutMessagesInput, DeliveryUncheckedCreateWithoutMessagesInput>
     connectOrCreate?: DeliveryCreateOrConnectWithoutMessagesInput
     connect?: DeliveryWhereUniqueInput
   }
 
-  export type UserUpdateOneRequiredWithoutMessagesNestedInput = {
+  export type UserCreateNestedOneWithoutMessagesInput = {
     create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
     connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
-    upsert?: UserUpsertWithoutMessagesInput
     connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMessagesInput, UserUpdateWithoutMessagesInput>, UserUncheckedUpdateWithoutMessagesInput>
   }
 
   export type DeliveryUpdateOneRequiredWithoutMessagesNestedInput = {
@@ -9241,6 +9233,14 @@ export namespace Prisma {
     upsert?: DeliveryUpsertWithoutMessagesInput
     connect?: DeliveryWhereUniqueInput
     update?: XOR<XOR<DeliveryUpdateToOneWithWhereWithoutMessagesInput, DeliveryUpdateWithoutMessagesInput>, DeliveryUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type UserUpdateOneRequiredWithoutMessagesNestedInput = {
+    create?: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMessagesInput
+    upsert?: UserUpsertWithoutMessagesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMessagesInput, UserUpdateWithoutMessagesInput>, UserUncheckedUpdateWithoutMessagesInput>
   }
 
   export type UserCreateNestedOneWithoutLocationsInput = {
@@ -9501,74 +9501,6 @@ export namespace Prisma {
     _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type DeliveryCreateWithoutSenderInput = {
-    id?: string
-    trackingId?: string | null
-    status?: $Enums.DeliveryStatus
-    origin: string
-    destination: string
-    pickupAddress?: string | null
-    deliveryAddress?: string | null
-    pickupLat?: number | null
-    pickupLng?: number | null
-    deliveryLat?: number | null
-    deliveryLng?: number | null
-    packageInfo?: string | null
-    packageDescription?: string | null
-    weight?: number | null
-    dimensions?: string | null
-    notes?: string | null
-    estimatedDelivery?: Date | string | null
-    imageUrl?: string | null
-    description?: string | null
-    qrCode?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    agent?: UserCreateNestedOneWithoutAgentDeliveriesInput
-    messages?: MessageCreateNestedManyWithoutDeliveryInput
-    locations?: LocationCreateNestedManyWithoutDeliveryInput
-    statusUpdates?: StatusUpdateCreateNestedManyWithoutDeliveryInput
-  }
-
-  export type DeliveryUncheckedCreateWithoutSenderInput = {
-    id?: string
-    trackingId?: string | null
-    agentId?: string | null
-    status?: $Enums.DeliveryStatus
-    origin: string
-    destination: string
-    pickupAddress?: string | null
-    deliveryAddress?: string | null
-    pickupLat?: number | null
-    pickupLng?: number | null
-    deliveryLat?: number | null
-    deliveryLng?: number | null
-    packageInfo?: string | null
-    packageDescription?: string | null
-    weight?: number | null
-    dimensions?: string | null
-    notes?: string | null
-    estimatedDelivery?: Date | string | null
-    imageUrl?: string | null
-    description?: string | null
-    qrCode?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    messages?: MessageUncheckedCreateNestedManyWithoutDeliveryInput
-    locations?: LocationUncheckedCreateNestedManyWithoutDeliveryInput
-    statusUpdates?: StatusUpdateUncheckedCreateNestedManyWithoutDeliveryInput
-  }
-
-  export type DeliveryCreateOrConnectWithoutSenderInput = {
-    where: DeliveryWhereUniqueInput
-    create: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput>
-  }
-
-  export type DeliveryCreateManySenderInputEnvelope = {
-    data: DeliveryCreateManySenderInput | DeliveryCreateManySenderInput[]
-    skipDuplicates?: boolean
-  }
-
   export type DeliveryCreateWithoutAgentInput = {
     id?: string
     trackingId?: string | null
@@ -9593,8 +9525,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     sender: UserCreateNestedOneWithoutSentDeliveriesInput
-    messages?: MessageCreateNestedManyWithoutDeliveryInput
     locations?: LocationCreateNestedManyWithoutDeliveryInput
+    messages?: MessageCreateNestedManyWithoutDeliveryInput
     statusUpdates?: StatusUpdateCreateNestedManyWithoutDeliveryInput
   }
 
@@ -9622,8 +9554,8 @@ export namespace Prisma {
     qrCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    messages?: MessageUncheckedCreateNestedManyWithoutDeliveryInput
     locations?: LocationUncheckedCreateNestedManyWithoutDeliveryInput
+    messages?: MessageUncheckedCreateNestedManyWithoutDeliveryInput
     statusUpdates?: StatusUpdateUncheckedCreateNestedManyWithoutDeliveryInput
   }
 
@@ -9637,27 +9569,71 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type MessageCreateWithoutSenderInput = {
+  export type DeliveryCreateWithoutSenderInput = {
     id?: string
-    content: string
+    trackingId?: string | null
+    status?: $Enums.DeliveryStatus
+    origin: string
+    destination: string
+    pickupAddress?: string | null
+    deliveryAddress?: string | null
+    pickupLat?: number | null
+    pickupLng?: number | null
+    deliveryLat?: number | null
+    deliveryLng?: number | null
+    packageInfo?: string | null
+    packageDescription?: string | null
+    weight?: number | null
+    dimensions?: string | null
+    notes?: string | null
+    estimatedDelivery?: Date | string | null
+    imageUrl?: string | null
+    description?: string | null
+    qrCode?: string | null
     createdAt?: Date | string
-    delivery: DeliveryCreateNestedOneWithoutMessagesInput
+    updatedAt?: Date | string
+    agent?: UserCreateNestedOneWithoutAgentDeliveriesInput
+    locations?: LocationCreateNestedManyWithoutDeliveryInput
+    messages?: MessageCreateNestedManyWithoutDeliveryInput
+    statusUpdates?: StatusUpdateCreateNestedManyWithoutDeliveryInput
   }
 
-  export type MessageUncheckedCreateWithoutSenderInput = {
+  export type DeliveryUncheckedCreateWithoutSenderInput = {
     id?: string
-    content: string
-    deliveryId: string
+    trackingId?: string | null
+    agentId?: string | null
+    status?: $Enums.DeliveryStatus
+    origin: string
+    destination: string
+    pickupAddress?: string | null
+    deliveryAddress?: string | null
+    pickupLat?: number | null
+    pickupLng?: number | null
+    deliveryLat?: number | null
+    deliveryLng?: number | null
+    packageInfo?: string | null
+    packageDescription?: string | null
+    weight?: number | null
+    dimensions?: string | null
+    notes?: string | null
+    estimatedDelivery?: Date | string | null
+    imageUrl?: string | null
+    description?: string | null
+    qrCode?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+    locations?: LocationUncheckedCreateNestedManyWithoutDeliveryInput
+    messages?: MessageUncheckedCreateNestedManyWithoutDeliveryInput
+    statusUpdates?: StatusUpdateUncheckedCreateNestedManyWithoutDeliveryInput
   }
 
-  export type MessageCreateOrConnectWithoutSenderInput = {
-    where: MessageWhereUniqueInput
-    create: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput>
+  export type DeliveryCreateOrConnectWithoutSenderInput = {
+    where: DeliveryWhereUniqueInput
+    create: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput>
   }
 
-  export type MessageCreateManySenderInputEnvelope = {
-    data: MessageCreateManySenderInput | MessageCreateManySenderInput[]
+  export type DeliveryCreateManySenderInputEnvelope = {
+    data: DeliveryCreateManySenderInput | DeliveryCreateManySenderInput[]
     skipDuplicates?: boolean
   }
 
@@ -9687,20 +9663,44 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type DeliveryUpsertWithWhereUniqueWithoutSenderInput = {
-    where: DeliveryWhereUniqueInput
-    update: XOR<DeliveryUpdateWithoutSenderInput, DeliveryUncheckedUpdateWithoutSenderInput>
-    create: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput>
+  export type MessageCreateWithoutSenderInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    delivery: DeliveryCreateNestedOneWithoutMessagesInput
   }
 
-  export type DeliveryUpdateWithWhereUniqueWithoutSenderInput = {
-    where: DeliveryWhereUniqueInput
-    data: XOR<DeliveryUpdateWithoutSenderInput, DeliveryUncheckedUpdateWithoutSenderInput>
+  export type MessageUncheckedCreateWithoutSenderInput = {
+    id?: string
+    content: string
+    deliveryId: string
+    createdAt?: Date | string
   }
 
-  export type DeliveryUpdateManyWithWhereWithoutSenderInput = {
+  export type MessageCreateOrConnectWithoutSenderInput = {
+    where: MessageWhereUniqueInput
+    create: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput>
+  }
+
+  export type MessageCreateManySenderInputEnvelope = {
+    data: MessageCreateManySenderInput | MessageCreateManySenderInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type DeliveryUpsertWithWhereUniqueWithoutAgentInput = {
+    where: DeliveryWhereUniqueInput
+    update: XOR<DeliveryUpdateWithoutAgentInput, DeliveryUncheckedUpdateWithoutAgentInput>
+    create: XOR<DeliveryCreateWithoutAgentInput, DeliveryUncheckedCreateWithoutAgentInput>
+  }
+
+  export type DeliveryUpdateWithWhereUniqueWithoutAgentInput = {
+    where: DeliveryWhereUniqueInput
+    data: XOR<DeliveryUpdateWithoutAgentInput, DeliveryUncheckedUpdateWithoutAgentInput>
+  }
+
+  export type DeliveryUpdateManyWithWhereWithoutAgentInput = {
     where: DeliveryScalarWhereInput
-    data: XOR<DeliveryUpdateManyMutationInput, DeliveryUncheckedUpdateManyWithoutSenderInput>
+    data: XOR<DeliveryUpdateManyMutationInput, DeliveryUncheckedUpdateManyWithoutAgentInput>
   }
 
   export type DeliveryScalarWhereInput = {
@@ -9733,47 +9733,20 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Delivery"> | Date | string
   }
 
-  export type DeliveryUpsertWithWhereUniqueWithoutAgentInput = {
+  export type DeliveryUpsertWithWhereUniqueWithoutSenderInput = {
     where: DeliveryWhereUniqueInput
-    update: XOR<DeliveryUpdateWithoutAgentInput, DeliveryUncheckedUpdateWithoutAgentInput>
-    create: XOR<DeliveryCreateWithoutAgentInput, DeliveryUncheckedCreateWithoutAgentInput>
+    update: XOR<DeliveryUpdateWithoutSenderInput, DeliveryUncheckedUpdateWithoutSenderInput>
+    create: XOR<DeliveryCreateWithoutSenderInput, DeliveryUncheckedCreateWithoutSenderInput>
   }
 
-  export type DeliveryUpdateWithWhereUniqueWithoutAgentInput = {
+  export type DeliveryUpdateWithWhereUniqueWithoutSenderInput = {
     where: DeliveryWhereUniqueInput
-    data: XOR<DeliveryUpdateWithoutAgentInput, DeliveryUncheckedUpdateWithoutAgentInput>
+    data: XOR<DeliveryUpdateWithoutSenderInput, DeliveryUncheckedUpdateWithoutSenderInput>
   }
 
-  export type DeliveryUpdateManyWithWhereWithoutAgentInput = {
+  export type DeliveryUpdateManyWithWhereWithoutSenderInput = {
     where: DeliveryScalarWhereInput
-    data: XOR<DeliveryUpdateManyMutationInput, DeliveryUncheckedUpdateManyWithoutAgentInput>
-  }
-
-  export type MessageUpsertWithWhereUniqueWithoutSenderInput = {
-    where: MessageWhereUniqueInput
-    update: XOR<MessageUpdateWithoutSenderInput, MessageUncheckedUpdateWithoutSenderInput>
-    create: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput>
-  }
-
-  export type MessageUpdateWithWhereUniqueWithoutSenderInput = {
-    where: MessageWhereUniqueInput
-    data: XOR<MessageUpdateWithoutSenderInput, MessageUncheckedUpdateWithoutSenderInput>
-  }
-
-  export type MessageUpdateManyWithWhereWithoutSenderInput = {
-    where: MessageScalarWhereInput
-    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutSenderInput>
-  }
-
-  export type MessageScalarWhereInput = {
-    AND?: MessageScalarWhereInput | MessageScalarWhereInput[]
-    OR?: MessageScalarWhereInput[]
-    NOT?: MessageScalarWhereInput | MessageScalarWhereInput[]
-    id?: StringFilter<"Message"> | string
-    content?: StringFilter<"Message"> | string
-    senderId?: StringFilter<"Message"> | string
-    deliveryId?: StringFilter<"Message"> | string
-    createdAt?: DateTimeFilter<"Message"> | Date | string
+    data: XOR<DeliveryUpdateManyMutationInput, DeliveryUncheckedUpdateManyWithoutSenderInput>
   }
 
   export type LocationUpsertWithWhereUniqueWithoutAgentInput = {
@@ -9804,37 +9777,31 @@ export namespace Prisma {
     timestamp?: DateTimeFilter<"Location"> | Date | string
   }
 
-  export type UserCreateWithoutSentDeliveriesInput = {
-    id?: string
-    name: string
-    email: string
-    password: string
-    role?: $Enums.Role
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    agentDeliveries?: DeliveryCreateNestedManyWithoutAgentInput
-    messages?: MessageCreateNestedManyWithoutSenderInput
-    locations?: LocationCreateNestedManyWithoutAgentInput
+  export type MessageUpsertWithWhereUniqueWithoutSenderInput = {
+    where: MessageWhereUniqueInput
+    update: XOR<MessageUpdateWithoutSenderInput, MessageUncheckedUpdateWithoutSenderInput>
+    create: XOR<MessageCreateWithoutSenderInput, MessageUncheckedCreateWithoutSenderInput>
   }
 
-  export type UserUncheckedCreateWithoutSentDeliveriesInput = {
-    id?: string
-    name: string
-    email: string
-    password: string
-    role?: $Enums.Role
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    agentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutAgentInput
-    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
-    locations?: LocationUncheckedCreateNestedManyWithoutAgentInput
+  export type MessageUpdateWithWhereUniqueWithoutSenderInput = {
+    where: MessageWhereUniqueInput
+    data: XOR<MessageUpdateWithoutSenderInput, MessageUncheckedUpdateWithoutSenderInput>
   }
 
-  export type UserCreateOrConnectWithoutSentDeliveriesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutSentDeliveriesInput, UserUncheckedCreateWithoutSentDeliveriesInput>
+  export type MessageUpdateManyWithWhereWithoutSenderInput = {
+    where: MessageScalarWhereInput
+    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutSenderInput>
+  }
+
+  export type MessageScalarWhereInput = {
+    AND?: MessageScalarWhereInput | MessageScalarWhereInput[]
+    OR?: MessageScalarWhereInput[]
+    NOT?: MessageScalarWhereInput | MessageScalarWhereInput[]
+    id?: StringFilter<"Message"> | string
+    content?: StringFilter<"Message"> | string
+    senderId?: StringFilter<"Message"> | string
+    deliveryId?: StringFilter<"Message"> | string
+    createdAt?: DateTimeFilter<"Message"> | Date | string
   }
 
   export type UserCreateWithoutAgentDeliveriesInput = {
@@ -9847,8 +9814,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     sentDeliveries?: DeliveryCreateNestedManyWithoutSenderInput
-    messages?: MessageCreateNestedManyWithoutSenderInput
     locations?: LocationCreateNestedManyWithoutAgentInput
+    messages?: MessageCreateNestedManyWithoutSenderInput
   }
 
   export type UserUncheckedCreateWithoutAgentDeliveriesInput = {
@@ -9861,8 +9828,8 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     sentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutSenderInput
-    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
     locations?: LocationUncheckedCreateNestedManyWithoutAgentInput
+    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
   }
 
   export type UserCreateOrConnectWithoutAgentDeliveriesInput = {
@@ -9870,28 +9837,37 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutAgentDeliveriesInput, UserUncheckedCreateWithoutAgentDeliveriesInput>
   }
 
-  export type MessageCreateWithoutDeliveryInput = {
+  export type UserCreateWithoutSentDeliveriesInput = {
     id?: string
-    content: string
+    name: string
+    email: string
+    password: string
+    role?: $Enums.Role
+    image?: string | null
     createdAt?: Date | string
-    sender: UserCreateNestedOneWithoutMessagesInput
+    updatedAt?: Date | string
+    agentDeliveries?: DeliveryCreateNestedManyWithoutAgentInput
+    locations?: LocationCreateNestedManyWithoutAgentInput
+    messages?: MessageCreateNestedManyWithoutSenderInput
   }
 
-  export type MessageUncheckedCreateWithoutDeliveryInput = {
+  export type UserUncheckedCreateWithoutSentDeliveriesInput = {
     id?: string
-    content: string
-    senderId: string
+    name: string
+    email: string
+    password: string
+    role?: $Enums.Role
+    image?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
+    agentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutAgentInput
+    locations?: LocationUncheckedCreateNestedManyWithoutAgentInput
+    messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
   }
 
-  export type MessageCreateOrConnectWithoutDeliveryInput = {
-    where: MessageWhereUniqueInput
-    create: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput>
-  }
-
-  export type MessageCreateManyDeliveryInputEnvelope = {
-    data: MessageCreateManyDeliveryInput | MessageCreateManyDeliveryInput[]
-    skipDuplicates?: boolean
+  export type UserCreateOrConnectWithoutSentDeliveriesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutSentDeliveriesInput, UserUncheckedCreateWithoutSentDeliveriesInput>
   }
 
   export type LocationCreateWithoutDeliveryInput = {
@@ -9920,6 +9896,30 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type MessageCreateWithoutDeliveryInput = {
+    id?: string
+    content: string
+    createdAt?: Date | string
+    sender: UserCreateNestedOneWithoutMessagesInput
+  }
+
+  export type MessageUncheckedCreateWithoutDeliveryInput = {
+    id?: string
+    content: string
+    senderId: string
+    createdAt?: Date | string
+  }
+
+  export type MessageCreateOrConnectWithoutDeliveryInput = {
+    where: MessageWhereUniqueInput
+    create: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput>
+  }
+
+  export type MessageCreateManyDeliveryInputEnvelope = {
+    data: MessageCreateManyDeliveryInput | MessageCreateManyDeliveryInput[]
+    skipDuplicates?: boolean
+  }
+
   export type StatusUpdateCreateWithoutDeliveryInput = {
     id?: string
     status: $Enums.DeliveryStatus
@@ -9944,45 +9944,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type UserUpsertWithoutSentDeliveriesInput = {
-    update: XOR<UserUpdateWithoutSentDeliveriesInput, UserUncheckedUpdateWithoutSentDeliveriesInput>
-    create: XOR<UserCreateWithoutSentDeliveriesInput, UserUncheckedCreateWithoutSentDeliveriesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutSentDeliveriesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutSentDeliveriesInput, UserUncheckedUpdateWithoutSentDeliveriesInput>
-  }
-
-  export type UserUpdateWithoutSentDeliveriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    agentDeliveries?: DeliveryUpdateManyWithoutAgentNestedInput
-    messages?: MessageUpdateManyWithoutSenderNestedInput
-    locations?: LocationUpdateManyWithoutAgentNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutSentDeliveriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    agentDeliveries?: DeliveryUncheckedUpdateManyWithoutAgentNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
-    locations?: LocationUncheckedUpdateManyWithoutAgentNestedInput
-  }
-
   export type UserUpsertWithoutAgentDeliveriesInput = {
     update: XOR<UserUpdateWithoutAgentDeliveriesInput, UserUncheckedUpdateWithoutAgentDeliveriesInput>
     create: XOR<UserCreateWithoutAgentDeliveriesInput, UserUncheckedCreateWithoutAgentDeliveriesInput>
@@ -10004,8 +9965,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sentDeliveries?: DeliveryUpdateManyWithoutSenderNestedInput
-    messages?: MessageUpdateManyWithoutSenderNestedInput
     locations?: LocationUpdateManyWithoutAgentNestedInput
+    messages?: MessageUpdateManyWithoutSenderNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAgentDeliveriesInput = {
@@ -10018,24 +9979,47 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sentDeliveries?: DeliveryUncheckedUpdateManyWithoutSenderNestedInput
-    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
     locations?: LocationUncheckedUpdateManyWithoutAgentNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
   }
 
-  export type MessageUpsertWithWhereUniqueWithoutDeliveryInput = {
-    where: MessageWhereUniqueInput
-    update: XOR<MessageUpdateWithoutDeliveryInput, MessageUncheckedUpdateWithoutDeliveryInput>
-    create: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput>
+  export type UserUpsertWithoutSentDeliveriesInput = {
+    update: XOR<UserUpdateWithoutSentDeliveriesInput, UserUncheckedUpdateWithoutSentDeliveriesInput>
+    create: XOR<UserCreateWithoutSentDeliveriesInput, UserUncheckedCreateWithoutSentDeliveriesInput>
+    where?: UserWhereInput
   }
 
-  export type MessageUpdateWithWhereUniqueWithoutDeliveryInput = {
-    where: MessageWhereUniqueInput
-    data: XOR<MessageUpdateWithoutDeliveryInput, MessageUncheckedUpdateWithoutDeliveryInput>
+  export type UserUpdateToOneWithWhereWithoutSentDeliveriesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutSentDeliveriesInput, UserUncheckedUpdateWithoutSentDeliveriesInput>
   }
 
-  export type MessageUpdateManyWithWhereWithoutDeliveryInput = {
-    where: MessageScalarWhereInput
-    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutDeliveryInput>
+  export type UserUpdateWithoutSentDeliveriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    agentDeliveries?: DeliveryUpdateManyWithoutAgentNestedInput
+    locations?: LocationUpdateManyWithoutAgentNestedInput
+    messages?: MessageUpdateManyWithoutSenderNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutSentDeliveriesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    agentDeliveries?: DeliveryUncheckedUpdateManyWithoutAgentNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutAgentNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
   }
 
   export type LocationUpsertWithWhereUniqueWithoutDeliveryInput = {
@@ -10052,6 +10036,22 @@ export namespace Prisma {
   export type LocationUpdateManyWithWhereWithoutDeliveryInput = {
     where: LocationScalarWhereInput
     data: XOR<LocationUpdateManyMutationInput, LocationUncheckedUpdateManyWithoutDeliveryInput>
+  }
+
+  export type MessageUpsertWithWhereUniqueWithoutDeliveryInput = {
+    where: MessageWhereUniqueInput
+    update: XOR<MessageUpdateWithoutDeliveryInput, MessageUncheckedUpdateWithoutDeliveryInput>
+    create: XOR<MessageCreateWithoutDeliveryInput, MessageUncheckedCreateWithoutDeliveryInput>
+  }
+
+  export type MessageUpdateWithWhereUniqueWithoutDeliveryInput = {
+    where: MessageWhereUniqueInput
+    data: XOR<MessageUpdateWithoutDeliveryInput, MessageUncheckedUpdateWithoutDeliveryInput>
+  }
+
+  export type MessageUpdateManyWithWhereWithoutDeliveryInput = {
+    where: MessageScalarWhereInput
+    data: XOR<MessageUpdateManyMutationInput, MessageUncheckedUpdateManyWithoutDeliveryInput>
   }
 
   export type StatusUpdateUpsertWithWhereUniqueWithoutDeliveryInput = {
@@ -10104,10 +10104,10 @@ export namespace Prisma {
     qrCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sender: UserCreateNestedOneWithoutSentDeliveriesInput
     agent?: UserCreateNestedOneWithoutAgentDeliveriesInput
-    messages?: MessageCreateNestedManyWithoutDeliveryInput
+    sender: UserCreateNestedOneWithoutSentDeliveriesInput
     locations?: LocationCreateNestedManyWithoutDeliveryInput
+    messages?: MessageCreateNestedManyWithoutDeliveryInput
   }
 
   export type DeliveryUncheckedCreateWithoutStatusUpdatesInput = {
@@ -10135,8 +10135,8 @@ export namespace Prisma {
     qrCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    messages?: MessageUncheckedCreateNestedManyWithoutDeliveryInput
     locations?: LocationUncheckedCreateNestedManyWithoutDeliveryInput
+    messages?: MessageUncheckedCreateNestedManyWithoutDeliveryInput
   }
 
   export type DeliveryCreateOrConnectWithoutStatusUpdatesInput = {
@@ -10178,10 +10178,10 @@ export namespace Prisma {
     qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
     agent?: UserUpdateOneWithoutAgentDeliveriesNestedInput
-    messages?: MessageUpdateManyWithoutDeliveryNestedInput
+    sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
     locations?: LocationUpdateManyWithoutDeliveryNestedInput
+    messages?: MessageUpdateManyWithoutDeliveryNestedInput
   }
 
   export type DeliveryUncheckedUpdateWithoutStatusUpdatesInput = {
@@ -10209,41 +10209,8 @@ export namespace Prisma {
     qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    messages?: MessageUncheckedUpdateManyWithoutDeliveryNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDeliveryNestedInput
-  }
-
-  export type UserCreateWithoutMessagesInput = {
-    id?: string
-    name: string
-    email: string
-    password: string
-    role?: $Enums.Role
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sentDeliveries?: DeliveryCreateNestedManyWithoutSenderInput
-    agentDeliveries?: DeliveryCreateNestedManyWithoutAgentInput
-    locations?: LocationCreateNestedManyWithoutAgentInput
-  }
-
-  export type UserUncheckedCreateWithoutMessagesInput = {
-    id?: string
-    name: string
-    email: string
-    password: string
-    role?: $Enums.Role
-    image?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    sentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutSenderInput
-    agentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutAgentInput
-    locations?: LocationUncheckedCreateNestedManyWithoutAgentInput
-  }
-
-  export type UserCreateOrConnectWithoutMessagesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+    messages?: MessageUncheckedUpdateManyWithoutDeliveryNestedInput
   }
 
   export type DeliveryCreateWithoutMessagesInput = {
@@ -10269,8 +10236,8 @@ export namespace Prisma {
     qrCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sender: UserCreateNestedOneWithoutSentDeliveriesInput
     agent?: UserCreateNestedOneWithoutAgentDeliveriesInput
+    sender: UserCreateNestedOneWithoutSentDeliveriesInput
     locations?: LocationCreateNestedManyWithoutDeliveryInput
     statusUpdates?: StatusUpdateCreateNestedManyWithoutDeliveryInput
   }
@@ -10309,43 +10276,37 @@ export namespace Prisma {
     create: XOR<DeliveryCreateWithoutMessagesInput, DeliveryUncheckedCreateWithoutMessagesInput>
   }
 
-  export type UserUpsertWithoutMessagesInput = {
-    update: XOR<UserUpdateWithoutMessagesInput, UserUncheckedUpdateWithoutMessagesInput>
+  export type UserCreateWithoutMessagesInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    role?: $Enums.Role
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    agentDeliveries?: DeliveryCreateNestedManyWithoutAgentInput
+    sentDeliveries?: DeliveryCreateNestedManyWithoutSenderInput
+    locations?: LocationCreateNestedManyWithoutAgentInput
+  }
+
+  export type UserUncheckedCreateWithoutMessagesInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    role?: $Enums.Role
+    image?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    agentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutAgentInput
+    sentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutSenderInput
+    locations?: LocationUncheckedCreateNestedManyWithoutAgentInput
+  }
+
+  export type UserCreateOrConnectWithoutMessagesInput = {
+    where: UserWhereUniqueInput
     create: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutMessagesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutMessagesInput, UserUncheckedUpdateWithoutMessagesInput>
-  }
-
-  export type UserUpdateWithoutMessagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sentDeliveries?: DeliveryUpdateManyWithoutSenderNestedInput
-    agentDeliveries?: DeliveryUpdateManyWithoutAgentNestedInput
-    locations?: LocationUpdateManyWithoutAgentNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutMessagesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sentDeliveries?: DeliveryUncheckedUpdateManyWithoutSenderNestedInput
-    agentDeliveries?: DeliveryUncheckedUpdateManyWithoutAgentNestedInput
-    locations?: LocationUncheckedUpdateManyWithoutAgentNestedInput
   }
 
   export type DeliveryUpsertWithoutMessagesInput = {
@@ -10382,8 +10343,8 @@ export namespace Prisma {
     qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
     agent?: UserUpdateOneWithoutAgentDeliveriesNestedInput
+    sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
     locations?: LocationUpdateManyWithoutDeliveryNestedInput
     statusUpdates?: StatusUpdateUpdateManyWithoutDeliveryNestedInput
   }
@@ -10417,6 +10378,45 @@ export namespace Prisma {
     statusUpdates?: StatusUpdateUncheckedUpdateManyWithoutDeliveryNestedInput
   }
 
+  export type UserUpsertWithoutMessagesInput = {
+    update: XOR<UserUpdateWithoutMessagesInput, UserUncheckedUpdateWithoutMessagesInput>
+    create: XOR<UserCreateWithoutMessagesInput, UserUncheckedCreateWithoutMessagesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMessagesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMessagesInput, UserUncheckedUpdateWithoutMessagesInput>
+  }
+
+  export type UserUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    agentDeliveries?: DeliveryUpdateManyWithoutAgentNestedInput
+    sentDeliveries?: DeliveryUpdateManyWithoutSenderNestedInput
+    locations?: LocationUpdateManyWithoutAgentNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMessagesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    agentDeliveries?: DeliveryUncheckedUpdateManyWithoutAgentNestedInput
+    sentDeliveries?: DeliveryUncheckedUpdateManyWithoutSenderNestedInput
+    locations?: LocationUncheckedUpdateManyWithoutAgentNestedInput
+  }
+
   export type UserCreateWithoutLocationsInput = {
     id?: string
     name: string
@@ -10426,8 +10426,8 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sentDeliveries?: DeliveryCreateNestedManyWithoutSenderInput
     agentDeliveries?: DeliveryCreateNestedManyWithoutAgentInput
+    sentDeliveries?: DeliveryCreateNestedManyWithoutSenderInput
     messages?: MessageCreateNestedManyWithoutSenderInput
   }
 
@@ -10440,8 +10440,8 @@ export namespace Prisma {
     image?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutSenderInput
     agentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutAgentInput
+    sentDeliveries?: DeliveryUncheckedCreateNestedManyWithoutSenderInput
     messages?: MessageUncheckedCreateNestedManyWithoutSenderInput
   }
 
@@ -10473,8 +10473,8 @@ export namespace Prisma {
     qrCode?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
-    sender: UserCreateNestedOneWithoutSentDeliveriesInput
     agent?: UserCreateNestedOneWithoutAgentDeliveriesInput
+    sender: UserCreateNestedOneWithoutSentDeliveriesInput
     messages?: MessageCreateNestedManyWithoutDeliveryInput
     statusUpdates?: StatusUpdateCreateNestedManyWithoutDeliveryInput
   }
@@ -10533,8 +10533,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sentDeliveries?: DeliveryUpdateManyWithoutSenderNestedInput
     agentDeliveries?: DeliveryUpdateManyWithoutAgentNestedInput
+    sentDeliveries?: DeliveryUpdateManyWithoutSenderNestedInput
     messages?: MessageUpdateManyWithoutSenderNestedInput
   }
 
@@ -10547,8 +10547,8 @@ export namespace Prisma {
     image?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sentDeliveries?: DeliveryUncheckedUpdateManyWithoutSenderNestedInput
     agentDeliveries?: DeliveryUncheckedUpdateManyWithoutAgentNestedInput
+    sentDeliveries?: DeliveryUncheckedUpdateManyWithoutSenderNestedInput
     messages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
   }
 
@@ -10586,8 +10586,8 @@ export namespace Prisma {
     qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
     agent?: UserUpdateOneWithoutAgentDeliveriesNestedInput
+    sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
     messages?: MessageUpdateManyWithoutDeliveryNestedInput
     statusUpdates?: StatusUpdateUpdateManyWithoutDeliveryNestedInput
   }
@@ -10621,32 +10621,6 @@ export namespace Prisma {
     statusUpdates?: StatusUpdateUncheckedUpdateManyWithoutDeliveryNestedInput
   }
 
-  export type DeliveryCreateManySenderInput = {
-    id?: string
-    trackingId?: string | null
-    agentId?: string | null
-    status?: $Enums.DeliveryStatus
-    origin: string
-    destination: string
-    pickupAddress?: string | null
-    deliveryAddress?: string | null
-    pickupLat?: number | null
-    pickupLng?: number | null
-    deliveryLat?: number | null
-    deliveryLng?: number | null
-    packageInfo?: string | null
-    packageDescription?: string | null
-    weight?: number | null
-    dimensions?: string | null
-    notes?: string | null
-    estimatedDelivery?: Date | string | null
-    imageUrl?: string | null
-    description?: string | null
-    qrCode?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
   export type DeliveryCreateManyAgentInput = {
     id?: string
     trackingId?: string | null
@@ -10673,11 +10647,30 @@ export namespace Prisma {
     updatedAt?: Date | string
   }
 
-  export type MessageCreateManySenderInput = {
+  export type DeliveryCreateManySenderInput = {
     id?: string
-    content: string
-    deliveryId: string
+    trackingId?: string | null
+    agentId?: string | null
+    status?: $Enums.DeliveryStatus
+    origin: string
+    destination: string
+    pickupAddress?: string | null
+    deliveryAddress?: string | null
+    pickupLat?: number | null
+    pickupLng?: number | null
+    deliveryLat?: number | null
+    deliveryLng?: number | null
+    packageInfo?: string | null
+    packageDescription?: string | null
+    weight?: number | null
+    dimensions?: string | null
+    notes?: string | null
+    estimatedDelivery?: Date | string | null
+    imageUrl?: string | null
+    description?: string | null
+    qrCode?: string | null
     createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type LocationCreateManyAgentInput = {
@@ -10688,88 +10681,11 @@ export namespace Prisma {
     timestamp?: Date | string
   }
 
-  export type DeliveryUpdateWithoutSenderInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    trackingId?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    origin?: StringFieldUpdateOperationsInput | string
-    destination?: StringFieldUpdateOperationsInput | string
-    pickupAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    pickupLat?: NullableFloatFieldUpdateOperationsInput | number | null
-    pickupLng?: NullableFloatFieldUpdateOperationsInput | number | null
-    deliveryLat?: NullableFloatFieldUpdateOperationsInput | number | null
-    deliveryLng?: NullableFloatFieldUpdateOperationsInput | number | null
-    packageInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    packageDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    dimensions?: NullableStringFieldUpdateOperationsInput | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent?: UserUpdateOneWithoutAgentDeliveriesNestedInput
-    messages?: MessageUpdateManyWithoutDeliveryNestedInput
-    locations?: LocationUpdateManyWithoutDeliveryNestedInput
-    statusUpdates?: StatusUpdateUpdateManyWithoutDeliveryNestedInput
-  }
-
-  export type DeliveryUncheckedUpdateWithoutSenderInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    trackingId?: NullableStringFieldUpdateOperationsInput | string | null
-    agentId?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    origin?: StringFieldUpdateOperationsInput | string
-    destination?: StringFieldUpdateOperationsInput | string
-    pickupAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    pickupLat?: NullableFloatFieldUpdateOperationsInput | number | null
-    pickupLng?: NullableFloatFieldUpdateOperationsInput | number | null
-    deliveryLat?: NullableFloatFieldUpdateOperationsInput | number | null
-    deliveryLng?: NullableFloatFieldUpdateOperationsInput | number | null
-    packageInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    packageDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    dimensions?: NullableStringFieldUpdateOperationsInput | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    messages?: MessageUncheckedUpdateManyWithoutDeliveryNestedInput
-    locations?: LocationUncheckedUpdateManyWithoutDeliveryNestedInput
-    statusUpdates?: StatusUpdateUncheckedUpdateManyWithoutDeliveryNestedInput
-  }
-
-  export type DeliveryUncheckedUpdateManyWithoutSenderInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    trackingId?: NullableStringFieldUpdateOperationsInput | string | null
-    agentId?: NullableStringFieldUpdateOperationsInput | string | null
-    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
-    origin?: StringFieldUpdateOperationsInput | string
-    destination?: StringFieldUpdateOperationsInput | string
-    pickupAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
-    pickupLat?: NullableFloatFieldUpdateOperationsInput | number | null
-    pickupLng?: NullableFloatFieldUpdateOperationsInput | number | null
-    deliveryLat?: NullableFloatFieldUpdateOperationsInput | number | null
-    deliveryLng?: NullableFloatFieldUpdateOperationsInput | number | null
-    packageInfo?: NullableStringFieldUpdateOperationsInput | string | null
-    packageDescription?: NullableStringFieldUpdateOperationsInput | string | null
-    weight?: NullableFloatFieldUpdateOperationsInput | number | null
-    dimensions?: NullableStringFieldUpdateOperationsInput | string | null
-    notes?: NullableStringFieldUpdateOperationsInput | string | null
-    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  export type MessageCreateManySenderInput = {
+    id?: string
+    content: string
+    deliveryId: string
+    createdAt?: Date | string
   }
 
   export type DeliveryUpdateWithoutAgentInput = {
@@ -10796,8 +10712,8 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sender?: UserUpdateOneRequiredWithoutSentDeliveriesNestedInput
-    messages?: MessageUpdateManyWithoutDeliveryNestedInput
     locations?: LocationUpdateManyWithoutDeliveryNestedInput
+    messages?: MessageUpdateManyWithoutDeliveryNestedInput
     statusUpdates?: StatusUpdateUpdateManyWithoutDeliveryNestedInput
   }
 
@@ -10825,8 +10741,8 @@ export namespace Prisma {
     qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    messages?: MessageUncheckedUpdateManyWithoutDeliveryNestedInput
     locations?: LocationUncheckedUpdateManyWithoutDeliveryNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutDeliveryNestedInput
     statusUpdates?: StatusUpdateUncheckedUpdateManyWithoutDeliveryNestedInput
   }
 
@@ -10856,25 +10772,88 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MessageUpdateWithoutSenderInput = {
+  export type DeliveryUpdateWithoutSenderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
+    trackingId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    origin?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    pickupAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupLat?: NullableFloatFieldUpdateOperationsInput | number | null
+    pickupLng?: NullableFloatFieldUpdateOperationsInput | number | null
+    deliveryLat?: NullableFloatFieldUpdateOperationsInput | number | null
+    deliveryLng?: NullableFloatFieldUpdateOperationsInput | number | null
+    packageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    packageDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    dimensions?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    delivery?: DeliveryUpdateOneRequiredWithoutMessagesNestedInput
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    agent?: UserUpdateOneWithoutAgentDeliveriesNestedInput
+    locations?: LocationUpdateManyWithoutDeliveryNestedInput
+    messages?: MessageUpdateManyWithoutDeliveryNestedInput
+    statusUpdates?: StatusUpdateUpdateManyWithoutDeliveryNestedInput
   }
 
-  export type MessageUncheckedUpdateWithoutSenderInput = {
+  export type DeliveryUncheckedUpdateWithoutSenderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    deliveryId?: StringFieldUpdateOperationsInput | string
+    trackingId?: NullableStringFieldUpdateOperationsInput | string | null
+    agentId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    origin?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    pickupAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupLat?: NullableFloatFieldUpdateOperationsInput | number | null
+    pickupLng?: NullableFloatFieldUpdateOperationsInput | number | null
+    deliveryLat?: NullableFloatFieldUpdateOperationsInput | number | null
+    deliveryLng?: NullableFloatFieldUpdateOperationsInput | number | null
+    packageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    packageDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    dimensions?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    locations?: LocationUncheckedUpdateManyWithoutDeliveryNestedInput
+    messages?: MessageUncheckedUpdateManyWithoutDeliveryNestedInput
+    statusUpdates?: StatusUpdateUncheckedUpdateManyWithoutDeliveryNestedInput
   }
 
-  export type MessageUncheckedUpdateManyWithoutSenderInput = {
+  export type DeliveryUncheckedUpdateManyWithoutSenderInput = {
     id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    deliveryId?: StringFieldUpdateOperationsInput | string
+    trackingId?: NullableStringFieldUpdateOperationsInput | string | null
+    agentId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumDeliveryStatusFieldUpdateOperationsInput | $Enums.DeliveryStatus
+    origin?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    pickupAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    deliveryAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    pickupLat?: NullableFloatFieldUpdateOperationsInput | number | null
+    pickupLng?: NullableFloatFieldUpdateOperationsInput | number | null
+    deliveryLat?: NullableFloatFieldUpdateOperationsInput | number | null
+    deliveryLng?: NullableFloatFieldUpdateOperationsInput | number | null
+    packageInfo?: NullableStringFieldUpdateOperationsInput | string | null
+    packageDescription?: NullableStringFieldUpdateOperationsInput | string | null
+    weight?: NullableFloatFieldUpdateOperationsInput | number | null
+    dimensions?: NullableStringFieldUpdateOperationsInput | string | null
+    notes?: NullableStringFieldUpdateOperationsInput | string | null
+    estimatedDelivery?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    qrCode?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LocationUpdateWithoutAgentInput = {
@@ -10901,11 +10880,25 @@ export namespace Prisma {
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type MessageCreateManyDeliveryInput = {
-    id?: string
-    content: string
-    senderId: string
-    createdAt?: Date | string
+  export type MessageUpdateWithoutSenderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    delivery?: DeliveryUpdateOneRequiredWithoutMessagesNestedInput
+  }
+
+  export type MessageUncheckedUpdateWithoutSenderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    deliveryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MessageUncheckedUpdateManyWithoutSenderInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    deliveryId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LocationCreateManyDeliveryInput = {
@@ -10916,32 +10909,18 @@ export namespace Prisma {
     timestamp?: Date | string
   }
 
+  export type MessageCreateManyDeliveryInput = {
+    id?: string
+    content: string
+    senderId: string
+    createdAt?: Date | string
+  }
+
   export type StatusUpdateCreateManyDeliveryInput = {
     id?: string
     status: $Enums.DeliveryStatus
     timestamp?: Date | string
     notes?: string | null
-  }
-
-  export type MessageUpdateWithoutDeliveryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    sender?: UserUpdateOneRequiredWithoutMessagesNestedInput
-  }
-
-  export type MessageUncheckedUpdateWithoutDeliveryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    senderId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type MessageUncheckedUpdateManyWithoutDeliveryInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    content?: StringFieldUpdateOperationsInput | string
-    senderId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type LocationUpdateWithoutDeliveryInput = {
@@ -10966,6 +10945,27 @@ export namespace Prisma {
     longitude?: FloatFieldUpdateOperationsInput | number
     agentId?: StringFieldUpdateOperationsInput | string
     timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MessageUpdateWithoutDeliveryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    sender?: UserUpdateOneRequiredWithoutMessagesNestedInput
+  }
+
+  export type MessageUncheckedUpdateWithoutDeliveryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    senderId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MessageUncheckedUpdateManyWithoutDeliveryInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    content?: StringFieldUpdateOperationsInput | string
+    senderId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StatusUpdateUpdateWithoutDeliveryInput = {

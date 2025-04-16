@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
   output   = "./generated/client"
@@ -20,51 +17,51 @@ model User {
   image           String?
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
-  sentDeliveries  Delivery[] @relation("Sender")
   agentDeliveries Delivery[] @relation("Agent")
-  messages        Message[]  @relation("MessageSender")
+  sentDeliveries  Delivery[] @relation("Sender")
   locations       Location[] @relation("AgentLocation")
+  messages        Message[]  @relation("MessageSender")
 }
 
 model Delivery {
-  id                String           @id @default(cuid())
-  trackingId        String?          @unique @default(cuid())
-  senderId          String
-  agentId           String?
-  status            DeliveryStatus   @default(PENDING)
-  origin            String
-  destination       String
-  pickupAddress     String?
-  deliveryAddress   String?
-  pickupLat         Float?
-  pickupLng         Float?
-  deliveryLat       Float?
-  deliveryLng       Float?
-  packageInfo       String?
+  id                 String         @id @default(cuid())
+  trackingId         String?        @unique @default(cuid())
+  senderId           String
+  agentId            String?
+  status             DeliveryStatus @default(PENDING)
+  origin             String
+  destination        String
+  pickupAddress      String?
+  deliveryAddress    String?
+  pickupLat          Float?
+  pickupLng          Float?
+  deliveryLat        Float?
+  deliveryLng        Float?
+  packageInfo        String?
   packageDescription String?
-  weight            Float?
-  dimensions        String?
-  notes             String?
-  estimatedDelivery DateTime?
-  imageUrl          String?
-  description       String?
-  qrCode            String?
-  createdAt         DateTime         @default(now())
-  updatedAt         DateTime         @updatedAt
-  sender            User             @relation("Sender", fields: [senderId], references: [id])
-  agent             User?            @relation("Agent", fields: [agentId], references: [id])
-  messages          Message[]
-  locations         Location[]
-  statusUpdates     StatusUpdate[]
+  weight             Float?
+  dimensions         String?
+  notes              String?
+  estimatedDelivery  DateTime?
+  imageUrl           String?
+  description        String?
+  qrCode             String?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  agent              User?          @relation("Agent", fields: [agentId], references: [id])
+  sender             User           @relation("Sender", fields: [senderId], references: [id])
+  locations          Location[]
+  messages           Message[]
+  statusUpdates      StatusUpdate[]
 }
 
 model StatusUpdate {
-  id          String         @id @default(cuid())
-  status      DeliveryStatus
-  timestamp   DateTime       @default(now())
-  notes       String?
-  deliveryId  String
-  delivery    Delivery       @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
+  id         String         @id @default(cuid())
+  status     DeliveryStatus
+  timestamp  DateTime       @default(now())
+  notes      String?
+  deliveryId String
+  delivery   Delivery       @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
 }
 
 model Message {
@@ -73,8 +70,8 @@ model Message {
   senderId   String
   deliveryId String
   createdAt  DateTime @default(now())
-  sender     User     @relation("MessageSender", fields: [senderId], references: [id])
   delivery   Delivery @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
+  sender     User     @relation("MessageSender", fields: [senderId], references: [id])
 }
 
 model Location {

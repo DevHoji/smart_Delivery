@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
   output   = "./generated/client"
@@ -20,10 +17,10 @@ model User {
   image           String?
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
-  sentDeliveries  Delivery[] @relation("Sender")
   agentDeliveries Delivery[] @relation("Agent")
-  messages        Message[]  @relation("MessageSender")
+  sentDeliveries  Delivery[] @relation("Sender")
   locations       Location[] @relation("AgentLocation")
+  messages        Message[]  @relation("MessageSender")
 }
 
 model Delivery {
@@ -51,10 +48,10 @@ model Delivery {
   qrCode             String?
   createdAt          DateTime       @default(now())
   updatedAt          DateTime       @updatedAt
-  sender             User           @relation("Sender", fields: [senderId], references: [id])
   agent              User?          @relation("Agent", fields: [agentId], references: [id])
-  messages           Message[]
+  sender             User           @relation("Sender", fields: [senderId], references: [id])
   locations          Location[]
+  messages           Message[]
   statusUpdates      StatusUpdate[]
 }
 
@@ -73,8 +70,8 @@ model Message {
   senderId   String
   deliveryId String
   createdAt  DateTime @default(now())
-  sender     User     @relation("MessageSender", fields: [senderId], references: [id])
   delivery   Delivery @relation(fields: [deliveryId], references: [id], onDelete: Cascade)
+  sender     User     @relation("MessageSender", fields: [senderId], references: [id])
 }
 
 model Location {
